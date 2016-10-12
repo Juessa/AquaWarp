@@ -1,0 +1,10 @@
+name: AquaWarp
+main: vn.anhcraft.aquawarp.main.AquaWarp
+version: 1.2.0
+description: "(c) by Anh Craft"
+author: "Anh Craft"
+commands:
+   warp:
+      description: AquaWarp -=[Warp]=-
+   warps:
+      description: AquaWarp -=[Warps]=-
