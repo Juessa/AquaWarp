@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Default {
 	public static class plugin {
-		public static Boolean disable_stop = true;
+		public static Boolean disable_stop = false;
 		public static Boolean checkUpdate = true;
 	}
 	
@@ -26,9 +26,13 @@ public class Default {
 			"login"
 		}));
 		public static List<String> cmdListBeforeWarping = new ArrayList<String>(Arrays.asList( new String[]{
-				"say {player_name}",
-			}));
+			"tell {player_name} Teleporting you to {warp_name} warp..."
+		}));
 		public static Boolean UnlockIfDeleteWarp = true;
+		public static List<String> cmdListAfterWarping = new ArrayList<String>(Arrays.asList( new String[]{
+			"give {player_name} {player_iteminhand_name} 1"
+		}));
+		public static Boolean serviceCharge = false;
 	}
 	
 	public static class message {
@@ -42,7 +46,7 @@ public class Default {
 		public static String warpDidNotCreate = "&5[%plugin_name%]&r &cWarp hasn't been created!";
 		public static String warpCreated = "&5[%plugin_name%]&r &cThis warp was created!";
 		
-		public static String tpWarpSuccess = "&5[%plugin_name%]&r &aTeleported @player to @warp warp successfully !";
+		public static String tpWarpSuccess = "&5[%plugin_name%]&r &aTeleported @player to @warp warp successfully ! (Service amount: @money)";
 		public static String tpWarpSuccessReTpOther = "you";
 		public static String warpCreateSuccess = "&5[%plugin_name%]&r &a@warp warp created successfully!";
 		public static String warpDeletedSuccess = "&5[%plugin_name%]&r &a@warp warp deleted successfully!";
@@ -62,6 +66,9 @@ public class Default {
 		public static String warpUnLockSuccess = "&5[%plugin_name%]&r &a@warp warp unlocked successfully!";
 		public static String tpLockedWarpMessage = "&5[%plugin_name%]&r &b@warp warp has been locked, enter the password to continue:";
 		public static String tpLockedWarpWrongPass = "&5[%plugin_name%]&r &cWrong password! Use:&r &6/warp @warp&r &c to retype another password.";
+		public static String requireWarpUnLockedAmount = "&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to an unlocked warp.";
+		public static String requireWarpLockedAmount = "&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to a locked warp.";
+		public static String updateMoneySuccess = "&5[%plugin_name%]&r &aUpdate the amount of money successfully!";
 	}
 
 	public static class mysql {
@@ -91,6 +98,7 @@ public class Default {
 		public static String ListWarp = "aquawarp.listwarp";
 		public static String LockWarp = "aquawarp.lockwarp";
 		public static String UnLockWarp = "aquawarp.unlockwarp";
+		public static String FeeTp = "aquawarp.feetp";
 	}
 
 	public static class effect {

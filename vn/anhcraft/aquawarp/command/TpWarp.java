@@ -11,11 +11,15 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+
+import net.milkbowl.vault.economy.EconomyResponse;
 import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.api.MySQL;
 import vn.anhcraft.aquawarp.api.MySQLFuncs;
 import vn.anhcraft.aquawarp.event.TpWarpPasswordInput;
+import vn.anhcraft.aquawarp.main.AquaWarp;
 import vn.anhcraft.aquawarp.main.Cache;
 import vn.anhcraft.aquawarp.main.Options;
 
@@ -28,7 +32,9 @@ public class TpWarp {
 		    Options.mysql._CONNECT.pass);
 		 Connection c = null;
 	
+	@SuppressWarnings("deprecation")
 	public static void run(String warp, String player, CommandSender sender, Boolean isTpOther){
+		warp = Functions.reSpecial(warp);
 		Player p = Bukkit.getServer().getPlayerExact(player);
 		Boolean m = false;
 		for(Player x : Bukkit.getServer().getOnlinePlayers()) {
@@ -42,24 +48,74 @@ public class TpWarp {
 				Statement statement = MySQL.openConnection().createStatement();
 				// kiểm tra và tạo bảng
 				ResultSet r = statement.executeQuery(""
-			    		+ "SELECT * FROM "+Options.mysql.Warps+" WHERE name='"+Functions.reSpecial(warp)+"';");
+			    		+ "SELECT * FROM "+Options.mysql.Warps+" WHERE name='"+warp+"';");
 				Boolean i = r.next();
 				
 				if(i){
 					float x = Functions.stringToFloat(Functions.reSpecial(r.getString("x")));
 					float y = Functions.stringToFloat(Functions.reSpecial(r.getString("y")));
 					float z = Functions.stringToFloat(Functions.reSpecial(r.getString("z")));
-					String w = r.getString("world");
+					String w = Functions.reSpecial(r.getString("world"));
 					float yaw = Functions.stringToFloat(Functions.reSpecial(r.getString("yaw")));
 					World world = Bukkit.getServer().getWorld(w);
 					if(world != null){
-						if(!LockWarp.islocked(warp)){	
+						if(!LockWarp.islocked(warp)){
+							
+							ResultSet rd = statement.executeQuery(""
+							    		+ "SELECT * FROM "+Options.mysql.FeeTpWarp+" WHERE name='"+warp+"';");
+							Boolean ib = rd.next();
+								
+							if(Options.cmd.serviceCharge){
+								if(AquaWarp.EcoReady){
+									if(ib){
+										EconomyResponse xc = AquaWarp.economy.withdrawPlayer(p, Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money"))));
+							            if(!xc.transactionSuccess()) {
+							                sender.sendMessage(xc.errorMessage);
+							            }
+									}
+								} else {
+									sender.sendMessage(Options.message.requireVault);
+								}
+							}
+							
 							Location l = new Location(world, x, y, z);
 							l.setYaw(yaw);
+							ConsoleCommandSender s = Bukkit.getServer().getConsoleSender();
+							String[] cmdListBeforeWarping = Options.cmd.cmdListBeforeWarping;
+							for(String psc : cmdListBeforeWarping){
+								Bukkit.getServer().dispatchCommand(s, psc
+									.replace("{warp_name}", warp)
+									.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
+									.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
+									.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
+									.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
+									.replace("{warp_loc_world}", w)
+									.replace("{player_name}", p.getName())
+									.replace("{player_exp}", Float.toString(p.getExp()))
+									.replace("{player_level}", Integer.toString(p.getLevel()))
+									.replace("{player_iteminhand_name}", p.getItemInHand().getType().name())
+								);
+							}
 							
 							Boolean g = p.teleport(l);
 							
 							if(g) {
+								String[] cmdListAfterWarping = Options.cmd.cmdListAfterWarping;
+								for(String psc : cmdListAfterWarping){
+									Bukkit.getServer().dispatchCommand(s, psc
+										.replace("{warp_name}", warp)
+										.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
+										.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
+										.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
+										.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
+										.replace("{warp_loc_world}", w)
+										.replace("{player_name}", p.getName())
+										.replace("{player_exp}", Float.toString(p.getExp()))
+										.replace("{player_level}", Integer.toString(p.getLevel()))
+										.replace("{player_iteminhand_name}", p.getItemInHand().getType().name())
+									);
+								}
+								
 								Date dt = new Date();
 								String xg = "{\n"
 										+ "    'player_name': '" + p.getName() + "',\n"
@@ -97,11 +153,11 @@ public class TpWarp {
 										world.spawnParticle(Particle.FIREWORKS_SPARK, l, 0, 0, 0, 0, 1);
 									}
 								}
-								String message = Options.message.tpWarpSuccess.replaceAll("@warp", warp);
+								String message = Options.message.tpWarpSuccess.replace("@warp", warp).replace("@money", rd.getString("unlock_money"));
 								if(isTpOther){
-									message = message.replaceAll("@player", player);
+									message = message.replace("@player", player);
 								} else {
-									message = message.replaceAll("@player", Options.message.tpWarpSuccessReTpOther);
+									message = message.replace("@player", Options.message.tpWarpSuccessReTpOther);
 								}
 								sender.sendMessage(message);
 							}

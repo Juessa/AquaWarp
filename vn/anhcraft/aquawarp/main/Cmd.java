@@ -8,6 +8,7 @@ import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.command.CheckWarp;
 import vn.anhcraft.aquawarp.command.DelWarp;
 import vn.anhcraft.aquawarp.command.EditWarp;
+import vn.anhcraft.aquawarp.command.FeeTp;
 import vn.anhcraft.aquawarp.command.ListWarp;
 import vn.anhcraft.aquawarp.command.LockWarp;
 import vn.anhcraft.aquawarp.command.SetWarp;
@@ -172,6 +173,30 @@ public class Cmd implements CommandExecutor {
 						   UnLockWarp.run(sender,args[1]);
 						} else {
 							sender.sendMessage(Options.message.doesNotHavePerm);
+						}
+				 	} else {
+				 		sender.sendMessage(Options.message.requireName);
+				 	}
+				}
+				/**********/
+				
+				/** 1.2.2 **/
+				else if(args[0].equals(Options.cmd.FeeTp)){
+					if(1 < args.length){
+						if(2 < args.length){
+							if(3 < args.length){
+								if(sender.hasPermission(Options.perm._GLOBAL) ||
+								   sender.hasPermission(Options.perm.FeeTp) ||
+								   sender.isOp()){
+								   FeeTp.run(sender,args[1],args[2],args[3]);
+								} else {
+									sender.sendMessage(Options.message.doesNotHavePerm);
+								}
+							} else {
+								sender.sendMessage(Options.message.requireWarpUnLockedAmount);
+							}
+						} else {
+							sender.sendMessage(Options.message.requireWarpLockedAmount);
 						}
 				 	} else {
 				 		sender.sendMessage(Options.message.requireName);

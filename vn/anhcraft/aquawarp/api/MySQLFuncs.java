@@ -51,6 +51,12 @@ public class MySQLFuncs {
 				+ "`group` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
 				+ "`from` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
 				+ "`to` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL",Options.mysql.Protection);
+		
+		createIfIsNotExists(""
+				+ "`name` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
+				+ "`lock_money` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
+				+ "`unlock_money` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
+				+ "`group` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL",Options.mysql.FeeTpWarp);
 	}
 	
 	public static void createIfIsNotExists(String str, String tb){

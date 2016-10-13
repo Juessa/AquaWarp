@@ -6,8 +6,11 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
+
+import net.milkbowl.vault.economy.Economy;
 import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.api.URLContent;
 import vn.anhcraft.aquawarp.event.TpWarpPasswordInput;
@@ -15,19 +18,37 @@ import vn.anhcraft.aquawarp.event.TpWarpPasswordInput;
 /**
  * AquaWarp
  * @author Anh Craft
+ * @version 1.2.2
+ * 
+ * Vault: Copyright (C) 2011 Morgan Humes morgan@lanaddict.com
  */
 
 public class AquaWarp extends JavaPlugin {
+	public static Economy economy = null;
+	public static boolean EcoReady = false;
+	
 	 @Override
 	 public void onEnable(){
 		 Cache.delAll();
 		 setupFiles();
 	     setupScheduler();
 	     setupEvents();
+	     setupVault();
 	     checkUpdate();
 	     Bukkit.broadcastMessage(Options.message.enable_bc);
 	     this.getCommand(Options.cmd.Warp).setExecutor(new Cmd(this));
 	     this.getCommand(Options.cmd.Warps).setExecutor(new Cmd(this));
+	}
+
+	private void setupVault() {
+        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+        if (economyProvider != null) {
+            economy = economyProvider.getProvider();
+        }
+
+        if(economy != null){
+        	EcoReady = true;
+        }
 	}
 
 	private void setupEvents() {
@@ -120,10 +141,14 @@ public class AquaWarp extends JavaPlugin {
     			f.set("mysql.user", Default.mysql._CONNECT.user);
     			f.set("mysql.pass", Default.mysql._CONNECT.pass);
     			f.set("mysql.database", Default.mysql._CONNECT.dtbs);
+    			
         		f.set("checkWarp.maxArea", Default.cmd.CheckWarpGroud);
         		f.set("checkWarp.maxAreaSafe", Default.cmd.CheckWarpMaxSafe);
         		f.set("lockWarp.unsafePassword", Default.cmd.UnSafePassword);
         		f.set("delWarp.unlockIfDeleteWarp", Default.cmd.UnlockIfDeleteWarp);
+        		f.set("tpWarp.exeCmdBeforeWarping", Default.cmd.cmdListBeforeWarping);
+        		f.set("tpWarp.exeCmdAfterWarping", Default.cmd.cmdListAfterWarping);
+        		f.set("tpWarp.serviceCharge", Default.cmd.serviceCharge);
         		
     			f.set("other.effectEnable", Default.effect._ENABLE);
     			f.set("other.soundEnable", Default.sound._ENABLE);
@@ -154,6 +179,7 @@ public class AquaWarp extends JavaPlugin {
     			f.set("listWarp", Default.perm.ListWarp);
     			f.set("lockWarp", Default.perm.LockWarp);
     			f.set("unLockWarp", Default.perm.UnLockWarp);
+    			f.set("feeTp", Default.perm.FeeTp);
     			
                 f.save(pf);
                 
@@ -200,6 +226,9 @@ public class AquaWarp extends JavaPlugin {
         		f.set("warpUnLockSuccess", Default.message.warpUnLockSuccess);
         		f.set("tpLockedWarpMessage", Default.message.tpLockedWarpMessage);
         		f.set("tpLockedWarpWrongPass", Default.message.tpLockedWarpWrongPass);
+        		f.set("requireWarpLockedAmount", Default.message.requireWarpLockedAmount);
+        		f.set("requireWarpUnLockedAmount", Default.message.requireWarpUnLockedAmount);
+        		f.set("updateMoneySuccess", Default.message.updateMoneySuccess);
         		
                 f.save(pf);
             } catch (IOException exception) {

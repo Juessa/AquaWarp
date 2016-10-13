@@ -2,38 +2,56 @@ package vn.anhcraft.aquawarp.event;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import net.milkbowl.vault.economy.EconomyResponse;
 import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.api.MySQLFuncs;
 import vn.anhcraft.aquawarp.command.LockWarp;
+import vn.anhcraft.aquawarp.main.AquaWarp;
 import vn.anhcraft.aquawarp.main.Cache;
 import vn.anhcraft.aquawarp.main.Options;
 
 public class TpWarpPasswordInput implements Listener {
-	private static String message;
-	private static Player player;
-	private static Boolean ready = false;
-	private static Boolean isTpOther;
-	private static CommandSender sender;
-	private static String warp;
 	
+	//**** CACHE TPWARP ****
+	private static ArrayList<Player> playerx = new ArrayList<Player>();
+	private static ArrayList<Boolean> isTpOtherx = new ArrayList<Boolean>();
+	private static ArrayList<CommandSender> senderx = new ArrayList<CommandSender>();
+	private static ArrayList<String> warpx = new ArrayList<String>();
+	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onAsyncPlayerChat(AsyncPlayerChatEvent e){
-		message = e.getMessage();
-		if(ready){
-			ready = false;
-			warp = Functions.reSpecial(warp);
+		Boolean uq = false;
+		int uo = -1;
+		for(int v = 0; v < playerx.size(); v++){
+			Player px = playerx.get(v);
+			if(px.getName().equals(e.getPlayer().getName())){
+				uq = true;
+				uo = v;
+			}
+		}
+		
+		
+		if(uq){
+			String pass = e.getMessage();
+			Boolean isTpOther = isTpOtherx.get(uo);
+			String warp = Functions.reSpecial(warpx.get(uo));
+			CommandSender sender = senderx.get(uo);
+			Player player = playerx.get(uo);
+			
 			ResultSet r = MySQLFuncs.exeTable("SELECT * FROM "+ Options.mysql.Warps +" WHERE name='"+warp+"';");
 			Boolean rq;
 			try {
@@ -45,8 +63,24 @@ public class TpWarpPasswordInput implements Listener {
 						if(!LockWarp.islocked(warp)){
 							sender.sendMessage(Options.message.warpUnLocked);
 						} else {
-							message = Functions.reSpecial(Functions.md5(message));
-							if(rs.getString("pass").equals(message)){
+							pass = Functions.reSpecial(Functions.md5(pass));
+							if(rs.getString("pass").equals(pass)){
+								ResultSet rd = MySQLFuncs.exeTable("SELECT * FROM "+ Options.mysql.FeeTpWarp +" WHERE name='"+warp+"';");
+								Boolean ib = rd.next();
+								
+								if(Options.cmd.serviceCharge){
+									if(AquaWarp.EcoReady){
+										if(ib){
+											EconomyResponse xc = AquaWarp.economy.withdrawPlayer(player, Functions.strToDouble(Functions.reSpecial(rd.getString("lock_money"))));
+								            if(!xc.transactionSuccess()) {
+								                sender.sendMessage(xc.errorMessage);
+								            }
+										}
+									} else {
+										sender.sendMessage(Options.message.requireVault);
+									}
+								}
+								
 								float x = Functions.stringToFloat(Functions.reSpecial(r.getString("x")));
 								float y = Functions.stringToFloat(Functions.reSpecial(r.getString("y")));
 								float z = Functions.stringToFloat(Functions.reSpecial(r.getString("z")));
@@ -56,8 +90,41 @@ public class TpWarpPasswordInput implements Listener {
 								
 								Location l = new Location(world, x, y, z);
 								l.setYaw(yaw);
+								ConsoleCommandSender s = Bukkit.getServer().getConsoleSender();
+								String[] cmdListBeforeWarping = Options.cmd.cmdListBeforeWarping;
+								for(String psc : cmdListBeforeWarping){
+									Bukkit.getServer().dispatchCommand(s, psc
+										.replace("{warp_name}", warp)
+										.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
+										.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
+										.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
+										.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
+										.replace("{warp_loc_world}", w)
+										.replace("{player_name}",player.getName())
+										.replace("{player_exp}", Float.toString(player.getExp()))
+										.replace("{player_level}", Integer.toString(player.getLevel()))
+										.replace("{player_iteminhand_name}", player.getItemInHand().getType().name())
+									);
+								}
+								
 								Boolean g = player.teleport(l);
 								if(g) {
+									String[] cmdListAfterWarping = Options.cmd.cmdListAfterWarping;
+									for(String psc : cmdListAfterWarping){
+										Bukkit.getServer().dispatchCommand(s, psc
+											.replace("{warp_name}", warp)
+											.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
+											.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
+											.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
+											.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
+											.replace("{warp_loc_world}", w)
+											.replace("{player_name}",player.getName())
+											.replace("{player_exp}", Float.toString(player.getExp()))
+											.replace("{player_level}", Integer.toString(player.getLevel()))
+											.replace("{player_iteminhand_name}", player.getItemInHand().getType().name())
+										);
+									}
+								
 									Date dt = new Date();
 									String xg = "{\n"
 											+ "    'player_name': '" + player.getName() + "',\n"
@@ -95,7 +162,7 @@ public class TpWarpPasswordInput implements Listener {
 											world.spawnParticle(Particle.FIREWORKS_SPARK, l, 0, 0, 0, 0, 1);
 										}
 									}
-									String message = Options.message.tpWarpSuccess.replaceAll("@warp", warp);
+									String message = Options.message.tpWarpSuccess.replaceAll("@warp", warp).replace("@money", rd.getString("lock_money"));
 									if(isTpOther){
 										message = message.replaceAll("@player", player.getName());
 									} else {
@@ -110,11 +177,16 @@ public class TpWarpPasswordInput implements Listener {
 					}
 				} else {
 					sender.sendMessage(Options.message.warpDidNotCreate);
-				}
-				e.setCancelled(true);				
+				}		
 			} catch (SQLException e2) {
 				e2.printStackTrace();
 			}
+			
+			warpx.remove(uo);
+			playerx.remove(uo);
+			senderx.remove(uo);
+			isTpOtherx.remove(uo);
+			e.setCancelled(true);
 		} else {
 			e.setCancelled(false);
 		}
@@ -122,10 +194,9 @@ public class TpWarpPasswordInput implements Listener {
 
 	public static void main(String warp_, Player p_, CommandSender sender_, Boolean isTpOther_) {
 		sender_.sendMessage(Options.message.tpLockedWarpMessage.replaceAll("@warp", warp_));
-		ready = true;
-		warp = warp_;
-		player = p_;
-		sender = sender_;
-		isTpOther = isTpOther_;
+		warpx.add(warp_);
+		playerx.add(p_);
+		senderx.add(sender_);
+		isTpOtherx.add(isTpOther_);
 	}
 }

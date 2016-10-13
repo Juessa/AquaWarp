@@ -8,7 +8,7 @@ import vn.anhcraft.aquawarp.api.Functions;
 public class Options {
 	public static final class plugin {
 		public static final String name = "AquaWarp";
-		public static final String version = "1.2.0";
+		public static final String version = "1.2.2";
 		public static final String author = "Anh Craft";
 		
 		public static final Boolean disable_stop = Config.getboolean("plugin.disable_serverStop", Default.plugin.disable_stop, files.file_config);
@@ -48,6 +48,10 @@ public class Options {
 		public static final String[] UnSafePassword = Config.getstringlist("lockWarp.unsafePassword", Default.cmd.UnSafePassword, files.file_config).stream().toArray(String[]::new);
 		public static final String UnLockWarp = "unlock";
 		public static final boolean UnlockIfDeleteWarp = Config.getboolean("delWarp.unlockIfDeleteWarp", Default.cmd.UnlockIfDeleteWarp, files.file_config);
+		public static final String[] cmdListBeforeWarping = Config.getstringlist("tpWarp.exeCmdBeforeWarping", Default.cmd.cmdListBeforeWarping, files.file_config).stream().toArray(String[]::new);
+		public static final String[] cmdListAfterWarping =  Config.getstringlist("tpWarp.exeCmdAfterWarping", Default.cmd.cmdListAfterWarping, files.file_config).stream().toArray(String[]::new);
+		public static final boolean serviceCharge = Config.getboolean("tpWarp.serviceCharge", Default.cmd.serviceCharge, files.file_config);
+		public static final String FeeTp = "feetp";
 	}
 	
 	public static final class files {
@@ -85,6 +89,7 @@ public class Options {
 			"&6/warps list&r &a[+] List all warps&r",
 			"&6/warps lock <name> <pass>&r &a[+] Lock a warp&r",
 			"&6/warps unlock <name>&r &a[+] Unlock a warp&r",
+			"&6/warps feetp <name> <money for unlocked warp> <money for locked warp>&r &a[+] Update the amount of money paid (if player teleport to a warp)&r",
 			"&c---------------------------------&r"
 		};
 		
@@ -110,6 +115,10 @@ public class Options {
 		public static final String warpUnLockSuccess = Functions.reword(Config.getstring("warpUnLockSuccess", Default.message.warpUnLockSuccess, files.file_message));
 		public static final String tpLockedWarpWrongPass = Functions.reword(Config.getstring("tpLockedWarpWrongPass", Default.message.tpLockedWarpWrongPass, files.file_message));
 		public static final String tpLockedWarpMessage = Functions.reword(Config.getstring("tpLockedWarpMessage", Default.message.tpLockedWarpMessage, files.file_message));
+		public static final String requireVault = Functions.reword("&5[%plugin_name%]&r &cThis feature requires Vault API!");
+		public static final String requireWarpUnLockedAmount = Functions.reword(Config.getstring("requireWarpUnLockedAmount", Default.message.requireWarpUnLockedAmount, files.file_message));
+		public static final String requireWarpLockedAmount = Functions.reword(Config.getstring("requireWarpLockedAmount", Default.message.requireWarpLockedAmount, files.file_message));
+		public static final String updateMoneySuccess = Functions.reword(Config.getstring("updateMoneySuccess", Default.message.updateMoneySuccess, files.file_message));
 	}
 
 	public static final class mysql {
@@ -128,6 +137,7 @@ public class Options {
 		}
 		public static final String Warps = _GOLBAL + "warps";
 		public static final String Protection = _GOLBAL + "protection";
+		public static final String FeeTpWarp = _GOLBAL + "fee_tpwarp";
 	}
 
 	public static final class perm {
@@ -141,6 +151,7 @@ public class Options {
 		public static final String ListWarp = Config.getstring("listWarp", Default.perm.ListWarp, files.file_perm);
 		public static final String LockWarp = Config.getstring("lockWarp", Default.perm.LockWarp, files.file_perm);
 		public static final String UnLockWarp = Config.getstring("unLockWarp", Default.perm.UnLockWarp, files.file_perm);
+		public static final String FeeTp = Config.getstring("feeTp", Default.perm.FeeTp, files.file_perm);
 	}
 
 	public static final class effect {

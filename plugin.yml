@@ -1,6 +1,7 @@
 name: AquaWarp
 main: vn.anhcraft.aquawarp.main.AquaWarp
-version: 1.2.0
+version: 1.2.2
+depend: [Vault]
 description: "(c) by Anh Craft"
 author: "Anh Craft"
 commands:
