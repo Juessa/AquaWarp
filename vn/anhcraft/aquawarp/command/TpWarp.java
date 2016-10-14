@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Particle;
@@ -13,13 +12,10 @@ import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
-
-import net.milkbowl.vault.economy.EconomyResponse;
 import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.api.MySQL;
 import vn.anhcraft.aquawarp.api.MySQLFuncs;
 import vn.anhcraft.aquawarp.event.TpWarpPasswordInput;
-import vn.anhcraft.aquawarp.main.AquaWarp;
 import vn.anhcraft.aquawarp.main.Cache;
 import vn.anhcraft.aquawarp.main.Options;
 
@@ -59,24 +55,13 @@ public class TpWarp {
 					float yaw = Functions.stringToFloat(Functions.reSpecial(r.getString("yaw")));
 					World world = Bukkit.getServer().getWorld(w);
 					if(world != null){
-						if(!LockWarp.islocked(warp)){
-							
-							ResultSet rd = statement.executeQuery(""
-							    		+ "SELECT * FROM "+Options.mysql.FeeTpWarp+" WHERE name='"+warp+"';");
-							Boolean ib = rd.next();
-								
-							if(Options.cmd.serviceCharge){
-								if(AquaWarp.EcoReady){
-									if(ib){
-										EconomyResponse xc = AquaWarp.economy.withdrawPlayer(p, Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money"))));
-							            if(!xc.transactionSuccess()) {
-							                sender.sendMessage(xc.errorMessage);
-							            }
-									}
-								} else {
-									sender.sendMessage(Options.message.requireVault);
-								}
+						if(!LockWarp.islocked(warp) || !(sender instanceof Player)){
+							String money = "0";
+							ResultSet rd = MySQLFuncs.exeTable("SELECT * FROM "+Options.mysql.FeeTpWarp+" WHERE name='"+warp+"';");
+							if (rd.next()) {
+								money = rd.getString("unlock_money");
 							}
+							rd.close();
 							
 							Location l = new Location(world, x, y, z);
 							l.setYaw(yaw);
@@ -153,7 +138,7 @@ public class TpWarp {
 										world.spawnParticle(Particle.FIREWORKS_SPARK, l, 0, 0, 0, 0, 1);
 									}
 								}
-								String message = Options.message.tpWarpSuccess.replace("@warp", warp).replace("@money", rd.getString("unlock_money"));
+								String message = Options.message.tpWarpSuccess.replace("@warp", warp).replace("@money", money);
 								if(isTpOther){
 									message = message.replace("@player", player);
 								} else {

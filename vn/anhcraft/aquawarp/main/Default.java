@@ -54,7 +54,6 @@ public class Default {
 		public static String warpIsDanger = "&5[%plugin_name%]&r &c@module: This is dangerous warp!";
 		public static String warpBlockDangerLength = "&5[%plugin_name%]&r &6@module: @length @type block(s) from the warp!";
 		public static String warpIsSafe = "&5[%plugin_name%]&r &a@module: This is a safe warp!";
-		public static String editWarpSuccess = "&5[%plugin_name%]&r &6@warp warp edited successfully!";
 		public static String warpListMessage = "&5[%plugin_name%]&r &a@size warp(s):";
 		public static String warpListEach = "&b@num. @name @status";
 		public static String requirePass = "&5[%plugin_name%]&r &cYou must enter the password!";
@@ -69,6 +68,9 @@ public class Default {
 		public static String requireWarpUnLockedAmount = "&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to an unlocked warp.";
 		public static String requireWarpLockedAmount = "&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to a locked warp.";
 		public static String updateMoneySuccess = "&5[%plugin_name%]&r &aUpdate the amount of money successfully!";
+		public static String signWarpCreateSuccess = "&5[%plugin_name%]&r &aCreate new warp sign successfully!";
+		public static String signWarpRemoveSuccess = "&5[%plugin_name%]&r &aRemove a warp sign successfully!";
+		public static String lackMoney = "&5[%plugin_name%]&r &cSorry, you lack money to do this action!";
 	}
 
 	public static class mysql {
@@ -99,6 +101,9 @@ public class Default {
 		public static String LockWarp = "aquawarp.lockwarp";
 		public static String UnLockWarp = "aquawarp.unlockwarp";
 		public static String FeeTp = "aquawarp.feetp";
+		public static String SignWarpUse = "aquawarp.signwarp.use";
+		public static String SignWarpCreate = "aquawarp.signwarp.create";
+		public static String SignWarpRemove = "aquawarp.signwarp.remove";
 	}
 
 	public static class effect {

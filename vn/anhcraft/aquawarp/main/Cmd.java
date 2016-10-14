@@ -1,10 +1,16 @@
 package vn.anhcraft.aquawarp.main;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+
+import net.milkbowl.vault.economy.EconomyResponse;
 import vn.anhcraft.aquawarp.api.Functions;
+import vn.anhcraft.aquawarp.api.MySQLFuncs;
 import vn.anhcraft.aquawarp.command.CheckWarp;
 import vn.anhcraft.aquawarp.command.DelWarp;
 import vn.anhcraft.aquawarp.command.EditWarp;
@@ -25,7 +31,7 @@ public class Cmd implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {		
-		if (cmd.getName().equalsIgnoreCase(Options.cmd.Warp)) {
+		if (cmd.getName().equals(Options.cmd.Warp)) {
 			if(sender.hasPermission(Options.perm._GLOBAL) ||
 			   sender.hasPermission(Options.perm.TpWarp) ||
 			   sender.isOp()){
@@ -39,12 +45,74 @@ public class Cmd implements CommandExecutor {
 					else {
 						sender.sendMessage(Options.message.requireName);
 					}
-				} else {				
+				} else {
 					if(1 < args.length){
-						TpWarp.run(args[0],args[1],sender,true);
+						ResultSet rd = MySQLFuncs.exeTable("SELECT * FROM "+Options.mysql.FeeTpWarp+" WHERE name='"+args[0]+"';");
+						Boolean ib;
+						try {
+							ib = rd.next();
+							if(Options.cmd.serviceCharge && !LockWarp.islocked(args[0])){
+								if(AquaWarp.EcoReady){
+									if(ib){
+										if(Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money")))
+											<= AquaWarp.economy.getBalance(((Player) sender).getPlayer())){
+											EconomyResponse xc = AquaWarp.economy.withdrawPlayer(((Player) sender).getPlayer(), 
+											Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money"))));
+								            if(xc.transactionSuccess()) {
+								            	TpWarp.run(args[0],args[1],sender,true);
+								            } else {
+								            	sender.sendMessage(xc.errorMessage);
+								            }
+										} else {
+											sender.sendMessage(Options.message.lackMoney);
+										}
+									} else {
+										TpWarp.run(args[0],sender.getName(),sender,true);
+									}
+								} else {
+									sender.sendMessage(Options.message.requireVault);
+								}
+							} else {
+								TpWarp.run(args[0],args[1],sender,true);
+							}	
+							rd.close();					
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
 					else if(args.length == 1){
-						TpWarp.run(args[0],sender.getName(),sender,false);
+						ResultSet rd = MySQLFuncs.exeTable("SELECT * FROM "+Options.mysql.FeeTpWarp+" WHERE name='"+args[0]+"';");
+						Boolean ib;
+						try {
+							ib = rd.next();
+							if(Options.cmd.serviceCharge && !LockWarp.islocked(args[0])){
+								if(AquaWarp.EcoReady){
+									if(ib){
+										if(Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money")))
+											<= AquaWarp.economy.getBalance(((Player) sender).getPlayer())){
+											EconomyResponse xc = AquaWarp.economy.withdrawPlayer(((Player) sender).getPlayer(),
+													Functions.strToDouble(Functions.reSpecial(rd.getString("unlock_money"))));
+								            if(xc.transactionSuccess()) {
+								            	TpWarp.run(args[0],sender.getName(),sender,false);
+								            } else {
+								            	sender.sendMessage(xc.errorMessage);
+								            }
+										} else {
+											sender.sendMessage(Options.message.lackMoney);
+										}
+									} else {
+										TpWarp.run(args[0],sender.getName(),sender,false);
+									}
+								} else {
+									sender.sendMessage(Options.message.requireVault);
+								}
+							} else {
+								TpWarp.run(args[0],sender.getName(),sender,false);
+							}
+							rd.close();						
+						} catch (SQLException e) {
+							e.printStackTrace();
+						}
 					}
 					else {
 						sender.sendMessage(Options.message.requireName);
@@ -60,7 +128,7 @@ public class Cmd implements CommandExecutor {
 		 *  /warps <sub> <arg...>
 		 *  
 		**/
-		if (cmd.getName().equalsIgnoreCase(Options.cmd.Warps)) {
+		if (cmd.getName().equals(Options.cmd.Warps)) {
 			if(args.length < 1){
 				if(sender.hasPermission(Options.perm._GLOBAL) ||
 				   sender.hasPermission(Options.perm.HelpWarp) ||

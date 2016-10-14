@@ -2,7 +2,6 @@ package vn.anhcraft.aquawarp.main;
 
 import java.io.File;
 import java.util.List;
-
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import vn.anhcraft.aquawarp.main.Options;

@@ -8,7 +8,7 @@ import vn.anhcraft.aquawarp.api.Functions;
 public class Options {
 	public static final class plugin {
 		public static final String name = "AquaWarp";
-		public static final String version = "1.2.2";
+		public static final String version = "1.2.8";
 		public static final String author = "Anh Craft";
 		
 		public static final Boolean disable_stop = Config.getboolean("plugin.disable_serverStop", Default.plugin.disable_stop, files.file_config);
@@ -101,7 +101,6 @@ public class Options {
 		public static final String warpIsDanger = Functions.reword(Config.getstring("warpDanger", Default.message.warpIsDanger, files.file_message));
 		public static final String warpBlockDangerLength = Functions.reword(Config.getstring("warpDangerBlock", Default.message.warpBlockDangerLength, files.file_message));
 		public static final String warpIsSafe = Functions.reword(Config.getstring("warpSafe", Default.message.warpIsSafe, files.file_message));
-		public static final String editWarpSuccess = Functions.reword(Config.getstring("editedSuccess", Default.message.editWarpSuccess, files.file_message));
 		public static final String newUpdateAvailable = Functions.reword("&5[%plugin_name%]&r &6There is a newer version available!");
 		public static final String versionNewest = Functions.reword("&5[%plugin_name%]&r &aThis is the newest version!");
 		public static final String warpListMessage = Functions.reword(Config.getstring("warpListMessage", Default.message.warpListMessage, files.file_message));
@@ -119,6 +118,9 @@ public class Options {
 		public static final String requireWarpUnLockedAmount = Functions.reword(Config.getstring("requireWarpUnLockedAmount", Default.message.requireWarpUnLockedAmount, files.file_message));
 		public static final String requireWarpLockedAmount = Functions.reword(Config.getstring("requireWarpLockedAmount", Default.message.requireWarpLockedAmount, files.file_message));
 		public static final String updateMoneySuccess = Functions.reword(Config.getstring("updateMoneySuccess", Default.message.updateMoneySuccess, files.file_message));
+		public static final String signWarpCreateSuccess = Functions.reword(Config.getstring("signWarpCreateSuccess", Default.message.signWarpCreateSuccess, files.file_message));
+		public static final String signWarpRemoveSuccess = Functions.reword(Config.getstring("signWarpRemoveSuccess", Default.message.signWarpRemoveSuccess, files.file_message));
+		public static final String lackMoney = Functions.reword(Config.getstring("lackMoney", Default.message.lackMoney, files.file_message));
 	}
 
 	public static final class mysql {
@@ -152,6 +154,9 @@ public class Options {
 		public static final String LockWarp = Config.getstring("lockWarp", Default.perm.LockWarp, files.file_perm);
 		public static final String UnLockWarp = Config.getstring("unLockWarp", Default.perm.UnLockWarp, files.file_perm);
 		public static final String FeeTp = Config.getstring("feeTp", Default.perm.FeeTp, files.file_perm);
+		public static final String SignWarpUse = Config.getstring("signWarpUse", Default.perm.SignWarpUse, files.file_perm);
+		public static final String SignWarpCreate = Config.getstring("signWarpCreate", Default.perm.SignWarpCreate, files.file_perm);
+		public static final String SignWarpRemove = Config.getstring("signWarpRemove", Default.perm.SignWarpRemove, files.file_perm);
 	}
 
 	public static final class effect {

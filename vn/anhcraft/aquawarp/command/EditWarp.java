@@ -12,7 +12,6 @@ public class EditWarp {
 			Player s = (Player) sender;
 			Bukkit.getServer().dispatchCommand(s, "warps del " + warp);
 			Bukkit.getServer().dispatchCommand(s, "warps set " + warp);
-			s.sendMessage(Options.message.editWarpSuccess.replaceAll("@warp", warp));
 		} else {
 			sender.sendMessage(Options.message.invalidSender);
 		}

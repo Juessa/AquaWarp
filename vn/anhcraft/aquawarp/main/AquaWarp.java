@@ -9,10 +9,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
-
 import net.milkbowl.vault.economy.Economy;
 import vn.anhcraft.aquawarp.api.Functions;
 import vn.anhcraft.aquawarp.api.URLContent;
+import vn.anhcraft.aquawarp.event.SignWarp;
 import vn.anhcraft.aquawarp.event.TpWarpPasswordInput;
 
 /**
@@ -53,6 +53,7 @@ public class AquaWarp extends JavaPlugin {
 
 	private void setupEvents() {
 		getServer().getPluginManager().registerEvents(new TpWarpPasswordInput(), this);
+		getServer().getPluginManager().registerEvents(new SignWarp(), this);
 	}
 
 	private void setupScheduler() {
@@ -180,6 +181,9 @@ public class AquaWarp extends JavaPlugin {
     			f.set("lockWarp", Default.perm.LockWarp);
     			f.set("unLockWarp", Default.perm.UnLockWarp);
     			f.set("feeTp", Default.perm.FeeTp);
+    			f.set("signWarpCreate", Default.perm.SignWarpCreate);
+    			f.set("signWarpRemove", Default.perm.SignWarpRemove);
+    			f.set("signWarpUse", Default.perm.SignWarpUse);
     			
                 f.save(pf);
                 
@@ -214,7 +218,6 @@ public class AquaWarp extends JavaPlugin {
         		f.set("warpDanger", Default.message.warpIsDanger);
         		f.set("warpDangerBlock", Default.message.warpBlockDangerLength);
         		f.set("warpSafe", Default.message.warpIsSafe);
-        		f.set("editedSuccess", Default.message.editWarpSuccess);
         		f.set("warpListMessage", Default.message.warpListMessage);
         		f.set("warpListEach", Default.message.warpListEach);
         		f.set("requirePass", Default.message.requirePass);
@@ -229,6 +232,9 @@ public class AquaWarp extends JavaPlugin {
         		f.set("requireWarpLockedAmount", Default.message.requireWarpLockedAmount);
         		f.set("requireWarpUnLockedAmount", Default.message.requireWarpUnLockedAmount);
         		f.set("updateMoneySuccess", Default.message.updateMoneySuccess);
+        		f.set("lackMoney", Default.message.lackMoney);
+        		f.set("signWarpCreateSuccess", Default.message.signWarpCreateSuccess);
+        		f.set("signWarpRemoveSuccess", Default.message.signWarpRemoveSuccess);
         		
                 f.save(pf);
             } catch (IOException exception) {
