@@ -1,9 +1,10 @@
 === AQUA WARP ===
 
-<+> (c) Create by Anh Craft
+<+> (c) Created by Anh Craft
 
 <+> Translator:
 	:= Anh Craft [https://www.spigotmc.org/members/anhcraft.252895/]
+	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
 	
 <+> Contributor:
 	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
