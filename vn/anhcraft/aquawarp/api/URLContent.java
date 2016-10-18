@@ -1,5 +1,4 @@
-package vn.anhcraft.aquawarp.api;
-
+package vn.anhcraft.aquawarp.API;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,7 +14,10 @@ public class URLContent {
 			URLConnection conn = url.openConnection();
 			
 			BufferedReader br = new BufferedReader(
-	                           new InputStreamReader(conn.getInputStream()));
+				new InputStreamReader(
+					conn.getInputStream()
+				)
+			);
 	
 			return br;
 		} catch (IOException e) {

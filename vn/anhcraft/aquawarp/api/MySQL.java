@@ -1,5 +1,4 @@
-package vn.anhcraft.aquawarp.api;
-
+package vn.anhcraft.aquawarp.API;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

@@ -1,19 +1,18 @@
-package vn.anhcraft.aquawarp.api;
+package vn.anhcraft.aquawarp.API;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import vn.anhcraft.aquawarp.main.Options;
+import vn.anhcraft.aquawarp.Options;
 
 public class MySQLFuncs {
 	 static MySQL MySQL = new MySQL(
-		Functions.reSpecial(Options.mysql._CONNECT.host),
-		Functions.reSpecial(Options.mysql._CONNECT.port),
-		Functions.reSpecial(Options.mysql._CONNECT.dtbs),
-		Functions.reSpecial(Options.mysql._CONNECT.user),
-	    Options.mysql._CONNECT.pass);
+		Functions.reSpecial(Options.plugin.mysql.host),
+		Functions.reSpecial(Options.plugin.mysql.port),
+		Functions.reSpecial(Options.plugin.mysql.dtbs),
+		Functions.reSpecial(Options.plugin.mysql.user),
+		Options.plugin.mysql.pass);
 	 Connection c = null;
 	 
 	 
@@ -38,25 +37,25 @@ public class MySQLFuncs {
 	
 	public static void setup() {
 		createIfIsNotExists(""
-				+ "`name` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`yaw` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`x` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`y` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`z` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`world` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL",Options.mysql.Warps);
+				+ "`name` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`yaw` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`x` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`y` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`z` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`world` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL",Options.plugin.mysql._Warps);
 		
 		createIfIsNotExists(""
-				+ "`name` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`pass` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`group` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`from` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`to` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL",Options.mysql.Protection);
+				+ "`name` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`pass` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`group` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`from` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`to` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL",Options.plugin.mysql._Protection);
 		
 		createIfIsNotExists(""
-				+ "`name` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`lock_money` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`unlock_money` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL,"
-				+ "`group` text COLLATE "+Options.mysql._INFO.collate+" DEFAULT NULL",Options.mysql.FeeTpWarp);
+				+ "`name` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`lock_money` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`unlock_money` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL,"
+				+ "`group` longtext COLLATE "+Options.plugin.mysql.collate+" DEFAULT NULL",Options.plugin.mysql._FeeTpWarp);
 	}
 	
 	public static void createIfIsNotExists(String str, String tb){
@@ -64,17 +63,17 @@ public class MySQLFuncs {
 			Statement statement = MySQL.openConnection().createStatement();
 		    statement.executeUpdate(""
 		    		+ "CREATE TABLE IF NOT EXISTS "+tb+" ("+str+") "
-		    		+ "ENGINE="+Options.mysql._INFO.engine+" "
-		    		+ "DEFAULT CHARSET="+Options.mysql._INFO.charset+" "
-		    		+ "COLLATE="+Options.mysql._INFO.collate+";");
+		    		+ "ENGINE="+Options.plugin.mysql.engine+" "
+		    		+ "DEFAULT CHARSET="+Options.plugin.mysql.charset+" "
+		    		+ "COLLATE="+Options.plugin.mysql.collate+";");
 		    statement.close();
 		    
 		} catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+           e.printStackTrace();
+       }
 	}
 	
-	public static ResultSet exeTable(String name){
+	public static ResultSet exeq(String name){
 		try {
 			setup();
 			
@@ -84,12 +83,12 @@ public class MySQLFuncs {
 		    return r;
 		    
 		} catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
+           e.printStackTrace();
+           return null;
+       }
 	}
 	
-	public static void execUpdate(String s){
+	public static void exeu(String s){
 		try {
 			setup();
 			
@@ -98,7 +97,7 @@ public class MySQLFuncs {
 		    statement.close();
 		    
 		} catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+           e.printStackTrace();
+       }
 	}
 }

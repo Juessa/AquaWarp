@@ -1,12 +1,18 @@
 name: AquaWarp
-main: vn.anhcraft.aquawarp.main.AquaWarp
-version: 1.2.8
+main: vn.anhcraft.aquawarp.AquaWarp
+version: 1.3.0
 website: http://anhcraft.tk/
 depend: [Vault]
+softdepend: [Vault]
 description: "(c) by Anh Craft"
 author: "Anh Craft"
+contributor: "Banbeucmas"
 commands:
    warp:
       description: AquaWarp -=[Warp]=-
    warps:
+      description: AquaWarp -=[Warps]=-
+   warpadmin:
+      description: AquaWarp -=[WarpAdmin]=-  
+   aquawarp:
       description: AquaWarp -=[Warps]=-
