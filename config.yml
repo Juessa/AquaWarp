@@ -9,7 +9,7 @@
 checkUpdate: true
 
 # language file (in messages folder)
-# available: en, vi
+# available: en (English), vi (Vietnamese), de (German)
 lang: message_en.yml
 
 # hash function using in this plugin
@@ -32,6 +32,24 @@ mysql:
   user: root            # (default)
   pass: ''              # (default)
   database: minecraft   # your database name
+  
+# HelpWarp configuration
+helpWarp:
+  messages:
+  - "&c---------------------------------&r"
+  - "&a-=[ &r&5%plugin_name%&r&a &bv%plugin_version%&r&a ]=-&r"
+  - "&5"
+  - "&6/warp <name> [<player>]&r  &a[+] Teleport you or other player to a warp&r"
+  - "&6/warps&r  &a[+] All commands of this plugin (Help)&r"
+  - "&6/warps set <name> [<x> <y> <z> <yaw> <world>]&r  &a[+] Create new warp&r"
+  - "&6/warps del <name>&r  &a[+] Delete a warp&r"
+  - "&6/warps list&r  &a[+] List all warps&r"
+  - "&6/warps lock <name> <pass>&r  &a[+] Lock a warp&r"
+  - "&6/warps unlock <name>&r  &a[+] Unlock a warp&r"
+  - "&6/warps feetp <name> <cost (for unlocked warp)> <cost (for locked warp)>&r  &a[+] Update the amount of money paid (if player teleport to a warp)&r"
+  - "&6/warps gui&r  &a[+] Open the GUI&r"
+  - "&6/warpadmin reload&r  &a[+] Reload the config file&r"
+  - "&c---------------------------------&r"
 
 # LockWarp configuration
 lockWarp:
@@ -72,5 +90,7 @@ tpWarp:
   
   # enable service charges
   serviceCharge: false
+  
+  # allow play sounds or spawn effects after the player teleport to a warp
   effect: true
   sound: true

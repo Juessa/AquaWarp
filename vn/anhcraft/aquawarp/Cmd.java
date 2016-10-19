@@ -58,8 +58,12 @@ public class Cmd implements CommandExecutor {
 		**/
 		if (cmd.getName().equals("warps")) {
 			if(args.length < 1){
-				for(String help : Options.message.help){
-					sender.sendMessage(Functions.reword(help));
+				if(sender.hasPermission("aquawarp.helpwarp") ||
+				   sender.hasPermission("aquawarp.*") ||
+				   sender.isOp()){
+					for(String help : Functions.Config.gls("helpWarp.messages", Options.plugin.dir + Options.files.config)){
+						sender.sendMessage(Functions.reword(help));
+					}
 				}
 			} else {
 				if(args[0].equals("set")){

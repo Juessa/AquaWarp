@@ -86,8 +86,7 @@ public class TpWarpPasswordInput implements Listener {
 									money = rd.getString("lock_money");
 									try {
 										if(Functions.Config.gb("tpWarp.serviceCharge",
-												Options.plugin.dir + Options.files.config) &&
-												sender instanceof Player && rd.next()){
+												Options.plugin.dir + Options.files.config)){
 											if(AquaWarp.EcoReady){
 												if(Functions.strToDouble(Functions.reSpecial(rd.getString("lock_money")))
 													<= AquaWarp.economy.getBalance(((Player) sender).getPlayer())){
@@ -138,6 +137,11 @@ public class TpWarpPasswordInput implements Listener {
 			senderx.remove(uo);
 			isTpOtherx.remove(uo);
 			e.setCancelled(true);
+			try {
+				r.close();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		} else {
 			e.setCancelled(false);
 		}
@@ -229,7 +233,6 @@ public class TpWarpPasswordInput implements Listener {
 				}
 				sender.sendMessage(message);
 			}
-			r.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -7,7 +7,7 @@ import vn.anhcraft.aquawarp.API.Functions;
 public final class Options {
 	public static final class plugin {
 		public static final String name = "AquaWarp";
-		public static final String version = "1.3.0";
+		public static final String version = "1.3.2";
 		public static final String author = "Anh Craft";
 		public static final String contributor = "Banbeucmas"; // ex: a, b, c, d
 		public static final Boolean checkUpdate = Functions.Config.gb("checkUpdate", 
@@ -36,7 +36,8 @@ public final class Options {
 		public static final String dir = "plugins/AquaWarp/";
 		public static final String[] langs = {
 			"vi",
-			"en"
+			"en",
+			"de"
 		};
 		
 		public static final class mysql {
@@ -67,22 +68,6 @@ public final class Options {
 	public static final class message {
 		public static final String enable_bc = Functions.reword("&5%plugin_name%&r &aThe plugin has been enabled!");
 		public static final String disable_bc = Functions.reword("&5%plugin_name%&r &cThe plugin has been disable!");
-		public static final String[] help = {
-			"&c---------------------------------&r",
-			"&a-=[ &r&5%plugin_name%&r&a &bv%plugin_version%&r&a ]=-&r",
-			"&5",
-			"&6/warp <name> [<player>]&r &a[+] Teleport you or other player to a warp&r",
-			"&6/warps&r &a[+] All commands of this plugin (Help)&r",
-			"&6/warps set <name> [<x> <y> <z> <yaw> <world>]&r &a[+] Create new warp&r",
-			"&6/warps del <name>&r &a[+] Delete a warp&r",
-			"&6/warps list&r &a[+] List all warps&r",
-			"&6/warps lock <name> <pass>&r &a[+] Lock a warp&r",
-			"&6/warps unlock <name>&r &a[+] Unlock a warp&r",
-			"&6/warps feetp <name> <cost for unlocked warp> <cost for locked warp>&r &a[+] Update the amount of money paid (if player teleport to a warp)&r",
-			"&6/warps gui&r &a[+] Open the GUI&r",
-			"&6/warpadmin reload&r &a[+] Reload the config file&r",
-			"&c---------------------------------&r"
-		};
 	}
 	
 	public static final class files{
