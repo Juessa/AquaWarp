@@ -1,11 +1,18 @@
 === AQUA WARP ===
 
+<<<<<<< HEAD
 <+> (c) Create by Anh Craft.
+=======
+<+> (c) Created by Anh Craft
+>>>>>>> origin/master
 
 <+> Translator:
 	:= Anh Craft [https://www.spigotmc.org/members/anhcraft.252895/]
 	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
+<<<<<<< HEAD
 	:= Gomze [https://www.spigotmc.org/members/gomze.61393/]
+=======
+>>>>>>> origin/master
 	
 <+> Contributor:
 	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
