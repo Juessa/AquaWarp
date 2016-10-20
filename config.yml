@@ -9,7 +9,7 @@
 checkUpdate: true
 
 # language file (in messages folder)
-# available: en (English), vi (Vietnamese), de (German)
+# available: en (English), vi (Vietnamese), de (German), ru (Russian)
 lang: message_en.yml
 
 # hash function using in this plugin

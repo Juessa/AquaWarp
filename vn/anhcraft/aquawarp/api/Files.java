@@ -115,5 +115,6 @@ public class Files {
     public static final void reload(AquaWarp v){
     	new_messages(v);
     	new_config(v);
+    	MySQLFuncs.reConnect();
     }
 }

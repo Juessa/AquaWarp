@@ -4,10 +4,10 @@ import org.bukkit.Bukkit;
 
 import vn.anhcraft.aquawarp.API.Functions;
 
-public final class Options {
-	public static final class plugin {
+public class Options {
+	public static class plugin {
 		public static final String name = "AquaWarp";
-		public static final String version = "1.3.2";
+		public static final String version = "1.3.3";
 		public static final String author = "Anh Craft";
 		public static final String contributor = "Banbeucmas"; // ex: a, b, c, d
 		public static final Boolean checkUpdate = Functions.Config.gb("checkUpdate", 
@@ -37,22 +37,25 @@ public final class Options {
 		public static final String[] langs = {
 			"vi",
 			"en",
-			"de"
+			"de",
+			"ru"
 		};
 		
-		public static final class mysql {
+		public static class mysql {
 			public static final String prefix = Functions.Config.gs("mysql.prefix", 
 					Options.plugin.dir + Options.files.config);
-			public static final String host = Functions.Config.gs("mysql.host", 
+			
+			public static String host = Functions.Config.gs("mysql.host", 
 					Options.plugin.dir + Options.files.config);
-			public static final String port = Functions.Config.gs("mysql.port",
+			public static String port = Functions.Config.gs("mysql.port",
 					Options.plugin.dir + Options.files.config);
-			public static final String user = Functions.Config.gs("mysql.user",
+			public static String user = Functions.Config.gs("mysql.user",
 					Options.plugin.dir + Options.files.config);
-			public static final String pass = Functions.Config.gs("mysql.pass",
+			public static String pass = Functions.Config.gs("mysql.pass",
 					Options.plugin.dir + Options.files.config);
-			public static final String dtbs = Functions.Config.gs("mysql.database", 
+			public static String dtbs = Functions.Config.gs("mysql.database", 
 					Options.plugin.dir + Options.files.config);
+			
 			public static final String collate = Functions.Config.gs("mysql.table.collate",
 					Options.plugin.dir + Options.files.config);
 			public static final String charset = Functions.Config.gs("mysql.table.charset", 
@@ -65,12 +68,12 @@ public final class Options {
 		}
 	}
 	
-	public static final class message {
+	public static class message {
 		public static final String enable_bc = Functions.reword("&5%plugin_name%&r &aThe plugin has been enabled!");
 		public static final String disable_bc = Functions.reword("&5%plugin_name%&r &cThe plugin has been disable!");
 	}
 	
-	public static final class files{
+	public static class files{
 		public static final String config = "config.yml";
 		public static final String warps = "warps.yml";
 		public static final String messages = "messages_@lang.yml";

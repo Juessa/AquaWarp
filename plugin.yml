@@ -1,13 +1,13 @@
 name: AquaWarp
 main: vn.anhcraft.aquawarp.AquaWarp
-version: 1.3.2
+version: 1.3.3
 website: http://anhcraft.tk/
 depend: [Vault]
 softdepend: [Vault]
 description: "(c) by Anh Craft"
 author: "Anh Craft"
 contributor: "Banbeucmas"
-translator: "Anh Craft, Banbeucmas, Gomze"
+translator: "Anh Craft, Banbeucmas, Gomze, ExZotic"
 commands:
    warp:
       description: AquaWarp

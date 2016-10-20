@@ -1,18 +1,12 @@
 === AQUA WARP ===
 
-<<<<<<< HEAD
 <+> (c) Create by Anh Craft.
-=======
-<+> (c) Created by Anh Craft
->>>>>>> origin/master
 
 <+> Translator:
 	:= Anh Craft [https://www.spigotmc.org/members/anhcraft.252895/]
 	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
-<<<<<<< HEAD
 	:= Gomze [https://www.spigotmc.org/members/gomze.61393/]
-=======
->>>>>>> origin/master
+	:= ExZotic [https://www.spigotmc.org/members/exzotic.111714/]
 	
 <+> Contributor:
 	:= Banbeucmas [https://www.spigotmc.org/members/banbeucmas.78128/]
@@ -31,8 +25,10 @@
 	:= 1.2.8 ~=~ Oct 15, 2016
 	:= 1.3.0 ~=~ Oct 18, 2016
 	:= 1.3.2 ~=~ Oct 19, 2016
+	:= 1.3.3 ~=~ Oct 20, 2016
 	
 <+> Support languages
 	:= vi {Vietnamese}
 	:= en {English}
     := de {German}
+    := ru {Russian}

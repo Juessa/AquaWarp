@@ -13,8 +13,27 @@ public class MySQLFuncs {
 		Functions.reSpecial(Options.plugin.mysql.dtbs),
 		Functions.reSpecial(Options.plugin.mysql.user),
 		Options.plugin.mysql.pass);
-	 Connection c = null;
-	 
+	 static Connection c = null;
+	
+	public static void reConnect(){
+		Options.plugin.mysql.host = Functions.Config.gs("mysql.host", 
+				Options.plugin.dir + Options.files.config);
+		Options.plugin.mysql.port = Functions.Config.gs("mysql.port",
+				Options.plugin.dir + Options.files.config);
+		Options.plugin.mysql.user = Functions.Config.gs("mysql.user",
+				Options.plugin.dir + Options.files.config);
+		Options.plugin.mysql.pass = Functions.Config.gs("mysql.pass",
+				Options.plugin.dir + Options.files.config);
+		Options.plugin.mysql.dtbs = Functions.Config.gs("mysql.database", 
+				Options.plugin.dir + Options.files.config);
+		MySQL = new MySQL(
+				Functions.reSpecial(Options.plugin.mysql.host),
+				Functions.reSpecial(Options.plugin.mysql.port),
+				Functions.reSpecial(Options.plugin.mysql.dtbs),
+				Functions.reSpecial(Options.plugin.mysql.user),
+				Options.plugin.mysql.pass);
+		c = null;
+	}
 	 
 	public static int rowsize(String t){
 		int a = 0;
