@@ -41,9 +41,8 @@ lackMoney: '&5[%plugin_name%]&r &cSorry, you lack money to do this action!'
 signWarpCreateSuccess: '&5[%plugin_name%]&r &aCreate new warp sign successfully!'
 signWarpRemoveSuccess: '&5[%plugin_name%]&r &aRemove a warp sign successfully!'
 
+requireVault: '&5[%plugin_name%]&r &cThis feature requires Vault API!'
 reloadSuccess: '&5[%plugin_name%]&r &bReload all files successfully!'
-haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cSorry, you have not enough energy requirements! (@energyRequire/@energy)'
-lostEnergy: '&5[%plugin_name%]&r &bYou lost @lostEnergy energy. Your current energy is @energy/@maxEnergy!'
 
 #
 # <== VARIABLES ==>

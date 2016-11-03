@@ -1,8 +1,6 @@
 package vn.anhcraft.aquawarp.API;
 
 import java.text.Normalizer;
-import java.io.File;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -11,26 +9,12 @@ import java.util.ArrayList;
 import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import vn.anhcraft.aquawarp.Options;
 
 public class Functions {
-	public static class Energy {
-		public static final int get(String uuid){
-			File e = new File(Options.plugin.dir + "energydata/"+uuid+".yml");
-			YamlConfiguration a = YamlConfiguration.loadConfiguration(e);
-			return a.getInt("energy");
-		}
-		public static final void set(String uuid, int energy) throws IOException{
-			File e = new File(Options.plugin.dir + "energydata/"+uuid+".yml");
-			YamlConfiguration a = YamlConfiguration.loadConfiguration(e);
-			a.set("energy", energy);
-			a.save(e);
-		}
-	}
-	
 	public static final class Config {
 		// lấy dữ liệu
 		public static final String gs(String path, String file){
@@ -42,14 +26,6 @@ public class Functions {
 				return Files.config.getString(path);
 			} else {
 				return null;
-			}
-		}
-		
-		public static final int gi(String path, String file){
-			if(file.equals(Options.plugin.dir + Options.files.config)){
-				return Files.config.getInt(path);
-			} else {
-				return -1;
 			}
 		}
 		

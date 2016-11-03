@@ -1,6 +1,5 @@
 package vn.anhcraft.aquawarp.Listeners;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,7 +51,6 @@ public class TpWarpPasswordInput implements Listener {
 			if(px.getName().equals(e.getPlayer().getName())){
 				uq = true;
 				uo = v;
-				break;
 			}
 		}
 		
@@ -82,15 +80,42 @@ public class TpWarpPasswordInput implements Listener {
 							pass = Functions.reSpecial(Functions.hash(pass));
 							if(rs.getString("pass").equals(pass)){
 								// trừ tiền
-								String money = Integer.toString(Functions.Config.gi(
-										"tpWarp.defaultServiceCost", Options.plugin.dir + Options.files.config));
+								String money = "0";
 								ResultSet rd = MySQLFuncs.exeq("SELECT * FROM "+Options.plugin.mysql._FeeTpWarp+" WHERE name='"+warp+"';");
 								if (rd.next()) {
-									money = Functions.reSpecial(rd.getString("lock_money"));
+									money = rd.getString("lock_money");
+									try {
+										if(Functions.Config.gb("tpWarp.serviceCharge",
+												Options.plugin.dir + Options.files.config)){
+											if(AquaWarp.EcoReady){
+												if(Functions.strToDouble(Functions.reSpecial(rd.getString("lock_money")))
+													<= AquaWarp.economy.getBalance(((Player) sender).getPlayer())){
+													EconomyResponse xc = AquaWarp.economy.withdrawPlayer(((Player) sender).getPlayer(), 
+													Functions.strToDouble(Functions.reSpecial(rd.getString("lock_money"))));
+										            if(xc.transactionSuccess()) {
+										            	gotp(warp, player, r, sender, isTpOther, money);
+										            } else {
+										            	sender.sendMessage(xc.errorMessage);
+										            }
+												} else {
+													sender.sendMessage(Functions.Config.gs("lackMoney", 
+															Options.plugin.dir + Options.files.messages));
+												}
+											} else {
+												sender.sendMessage(Functions.Config.gs("requireVault",
+														Options.plugin.dir + Options.files.messages));
+											}
+										} else {
+											gotp(warp, player, r, sender, isTpOther, money);
+										}
+									} catch (SQLException ev) {
+										ev.printStackTrace();
+									}
+								} else {
+									gotp(warp, player, r, sender, isTpOther, money);								
 								}
 								rd.close();
 								
-								gotp(warp, player, r, sender, isTpOther, money);					
 							} else {
 								sender.sendMessage(Functions.Config.gs("tpLockedWarpWrongPass", 
 										Options.plugin.dir + Options.files.messages)
@@ -155,111 +180,60 @@ public class TpWarpPasswordInput implements Listener {
 				);
 			}
 			
-			Boolean canTp = true;
-			
-			if(Functions.Config.gb("tpWarp.serviceCharge",
-					Options.plugin.dir + Options.files.config) &&
-					sender instanceof Player){
-				if(Functions.strToDouble(money)
-					<= AquaWarp.economy.getBalance(((Player) sender).getPlayer())){
-					
-					EconomyResponse xc = AquaWarp.economy.withdrawPlayer(
-					((Player) sender).getPlayer(), 
-					Functions.strToDouble(money));
-		            if(!xc.transactionSuccess()){
-		            	sender.sendMessage(xc.errorMessage);
-		            	canTp = false;
-		            }
-				} else {
-					sender.sendMessage(Functions.Config.gs("lackMoney", 
-							Options.plugin.dir + Options.files.messages));
-					canTp = false;
+			Boolean g = player.teleport(l);
+			if(g) {
+				// lệnh sau khi tp
+				String[] cmdListAfterWarping = Functions.Config.gals(
+						"tpWarp.exeCmdAfterWarping", Options.plugin.dir + Options.files.config)
+						.stream().toArray(String[]::new);
+				for(String psc : cmdListAfterWarping){
+					Bukkit.getServer().dispatchCommand(s, psc
+						.replace("{warp_name}", warp)
+						.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
+						.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
+						.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
+						.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
+						.replace("{warp_loc_world}", w)
+						.replace("{player_name}", player.getName())
+						.replace("{player_exp}", Float.toString(player.getExp()))
+						.replace("{player_level}", Integer.toString(player.getLevel()))
+						.replace("{player_iteminhand_name}", player.getItemInHand().getType().name())
+					);
 				}
-			}
 			
-			// energy
-			if(Functions.Config.gb("tpWarp.energy.enable",
-					Options.plugin.dir + Options.files.config) &&
-					sender instanceof Player && canTp){
-				String uuid = ((Player) sender).getUniqueId().toString();
-				int a = Functions.Config.gi("tpWarp.energy.energyNeededWarpLocked",
-						Options.plugin.dir + Options.files.config);
-				int b = Functions.Config.gi("tpWarp.energy.energyConsumptionWarpLocked",
-						Options.plugin.dir + Options.files.config);
-				if(a <= Functions.Energy.get(uuid)){
-					Functions.Energy.set(uuid, Functions.Energy.get(uuid)-b);
-					((Player) sender).sendMessage(
-							Functions.Config.gs("lostEnergy", Options.plugin.dir + Options.files.messages)
-							.replace("@lostEnergy", Integer.toString(b))
-							.replace("@maxEnergy", Integer.toString(Functions.Config.gi("tpWarp.energy.maxEnergy",
-							   Options.plugin.dir + Options.files.config)))
-							.replace("@energy", Integer.toString(Functions.Energy.get(uuid))));
-				} else {
-					((Player) sender).sendMessage(
-							Functions.Config.gs("haveNotEnoughEnergyRequire", Options.plugin.dir + Options.files.messages)
-							.replace("@energyRequire", Integer.toString(a))
-							.replace("@energy", Integer.toString(Functions.Energy.get(uuid))));
-					canTp = false;
-				}
-			}
-			//--------------
-			
-			if(canTp){
-				Boolean g = player.teleport(l);
-				if(g) {
-					// lệnh sau khi tp
-					String[] cmdListAfterWarping = Functions.Config.gals(
-							"tpWarp.exeCmdAfterWarping", Options.plugin.dir + Options.files.config)
-							.stream().toArray(String[]::new);
-					for(String psc : cmdListAfterWarping){
-						Bukkit.getServer().dispatchCommand(s, psc
-							.replace("{warp_name}", warp)
-							.replace("{warp_loc_x}", Functions.reSpecial(r.getString("x")))
-							.replace("{warp_loc_y}", Functions.reSpecial(r.getString("y")))
-							.replace("{warp_loc_z}", Functions.reSpecial(r.getString("z")))
-							.replace("{warp_loc_yaw}", Functions.reSpecial(r.getString("yaw")))
-							.replace("{warp_loc_world}", w)
-							.replace("{player_name}", player.getName())
-							.replace("{player_exp}", Float.toString(player.getExp()))
-							.replace("{player_level}", Integer.toString(player.getLevel()))
-							.replace("{player_iteminhand_name}", player.getItemInHand().getType().name())
-						);
+				// nhạc
+				if(Functions.Config.gb("tpWarp.sound", 
+						Options.plugin.dir + Options.files.config)){
+					for(int c = 0; c < 5; c++){
+						world.playSound(l, Sound.ENTITY_ENDERMEN_TELEPORT, 3.0F, 0.5F);
 					}
+				}
 				
-					// nhạc
-					if(Functions.Config.gb("tpWarp.sound", 
-							Options.plugin.dir + Options.files.config)){
-						for(int c = 0; c < 5; c++){
-							world.playSound(l, Sound.ENTITY_ENDERMEN_TELEPORT, 3.0F, 0.5F);
-						}
+				// hiệu ứng
+				if(Functions.Config.gb("tpWarp.effect", 
+						Options.plugin.dir + Options.files.config)){
+					for(int c = 0; c < 20; c++){
+						world.playEffect(l, Effect.ENDER_SIGNAL, 0);
 					}
-					
-					// hiệu ứng
-					if(Functions.Config.gb("tpWarp.effect", 
-							Options.plugin.dir + Options.files.config)){
-						for(int c = 0; c < 20; c++){
-							world.playEffect(l, Effect.ENDER_SIGNAL, 0);
-						}
-						l.add(0D, 1D, 0D);
-						for(int c = 0; c < 20; c++){
-							world.playEffect(l, Effect.ENDER_SIGNAL, 0);
-						}
+					l.add(0D, 1D, 0D);
+					for(int c = 0; c < 20; c++){
+						world.playEffect(l, Effect.ENDER_SIGNAL, 0);
 					}
-					// thông báo
-					String message = (Functions.Config.gs(
-							"tpWarpSuccess", Options.plugin.dir + Options.files.messages))
-							.replace("@warp", warp)
-							.replace("@money", money);
-					if(isTpOther){
-						message = message.replace("@player", player.getName());
-					} else {
-						message = message.replace("@player", Functions.Config.gs(
-								"tpWarpSuccessReTpOther", Options.plugin.dir + Options.files.messages));
-					}
-					sender.sendMessage(message);
 				}
+				// thông báo
+				String message = (Functions.Config.gs(
+						"tpWarpSuccess", Options.plugin.dir + Options.files.messages))
+						.replace("@warp", warp)
+						.replace("@money", money);
+				if(isTpOther){
+					message = message.replace("@player", player.getName());
+				} else {
+					message = message.replace("@player", Functions.Config.gs(
+							"tpWarpSuccessReTpOther", Options.plugin.dir + Options.files.messages));
+				}
+				sender.sendMessage(message);
 			}
-		} catch (SQLException | IOException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}

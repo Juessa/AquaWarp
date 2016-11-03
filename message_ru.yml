@@ -41,9 +41,8 @@ lackMoney: '&5[%plugin_name%]&r &cНедостаточно средств, чт�
 signWarpCreateSuccess: '&5[%plugin_name%]&r &aТабличка для Warp-точки успешно создана!'
 signWarpRemoveSuccess: '&5[%plugin_name%]&r &aТабличка для Warp-точки успешно удалена!'
 
+requireVault: '&5[%plugin_name%]&r &cНеобходим плагин Vault!'
 reloadSuccess: '&5[%plugin_name%]&r &bВсе файлы успешно перезагружены!'
-haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cSorry, you have not enough energy requirements! (@energyRequire/@energy)'
-lostEnergy: '&5[%plugin_name%]&r &bYou lost @lostEnergy energy. Your current energy is @energy/@maxEnergy!'
 
 #
 # <== VARIABLES ==>
