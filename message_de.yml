@@ -1,0 +1,54 @@
+
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: Gomze
+#
+# *****************************************
+
+invalidSender: '&5[%plugin_name%]&r &cDazu musst du ein Spieler sein!'
+invalidCmd: '&5[%plugin_name%]&r &cDieser Command existiert nicht!'
+doesNotHavePerm: '&5[%plugin_name%]&r &cDazu hast du keine Rechte!'
+doNotHaveWarp: '&5[%plugin_name%]&r &cDieser Warp existiert nicht!'
+playerNull: '&5[%plugin_name%]&r &cDieser Spieler existiert nicht oder ist nicht Online!'
+ 
+requireName: '&5[%plugin_name%]&r &cDu musst einen Namen eingeben!'
+worldNull: '&5[%plugin_name%]&r &cDieser Warp wurde nicht gefunden!'
+warpDidNotCreate: '&5[%plugin_name%]&r &cWarp wurde nicht erstellt!'
+warpCreated: '&5[%plugin_name%]&r &cWarp wurde erstellt!'
+tpWarpSuccess: '&5[%plugin_name%]&r &aTeleportiere @player zum Warp @warp (Service amount: @money)'
+tpWarpSuccessReTpOther: du
+warpCreateSuccess: '&5[%plugin_name%]&r &aDer Warp @warp wurde erstellt!'
+warpDeletedSuccess: '&5[%plugin_name%]&r Der warp &a@warp wurde entfernt!'
+ 
+warpListMessage: '&5@size warp(s):'
+warpListEach: '&b@num. @name @status'
+requirePass: '&5[%plugin_name%]&r &cDu musst ein Passwort eingeben!'
+warpLocked: '&5[%plugin_name%]&r &cDieser Warp ist verrigelt!'
+passwordUnSafe: '&5[%plugin_name%]&r &cDas Passwort ist unsicher!'
+warpLockSuccess: '&5[%plugin_name%]&r&aDer Warp @warp wurde verrigelt!'
+warpStatusLocked: ' &c[VERRIGELT]'
+warpUnLocked: '&5[%plugin_name%]&r &cDieser Warp wurde verrigelt!'
+warpUnLockSuccess: '&5[%plugin_name%]&r &aDer Warp @warp wurde erfolgreich entriegelt!'
+tpLockedWarpMessage: '&5[%plugin_name%]&r &bDer Warp @warp wurder verrigelt. Bitte gebe das Passwort ein:'
+tpLockedWarpWrongPass: '&5[%plugin_name%]&r &cFalsches Passwort! Benutze:&r &6/warp @warp&r&c um ein anderes einzugeben!'
+ 
+requireWarpLockedAmount: '&5[%plugin_name%]&r &cUm diesen Warp zu betreten musst du Geld bezahlen!'
+requireWarpUnLockedAmount: '&5[%plugin_name%]&r &cDazu musst du Geld bezahlen!'
+updateMoneySuccess: '&5[%plugin_name%]&r &aDein Geld wurde aktuallisiert!'
+lackMoney: '&5[%plugin_name%]&r &cDazu hast du nicht genug Geld!'
+signWarpCreateSuccess: '&5[%plugin_name%]&r &aEs wurde ein neues Warp-Schild erstellt!'
+signWarpRemoveSuccess: '&5[%plugin_name%]&r &aEs wurde ein Warp-Schild entfernt!'
+
+reloadSuccess: '&5[%plugin_name%]&r &bAlle Dateien wurden neu geladen!'
+haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cSorry, you have not enough energy requirements! (@energyRequire/@energy)'
+lostEnergy: '&5[%plugin_name%]&r &bYou lost @lostEnergy energy. Your current energy is @energy/@maxEnergy!'
+ 
+#
+# <== VARIABLES ==>
+# %plugin_version%
+# %plugin_author%
+# %plugin_name%
+# %contributor%
+#

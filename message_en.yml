@@ -1,0 +1,54 @@
+
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: Anh Craft & Banbeucmas
+#
+# *****************************************
+
+invalidSender: '&5[%plugin_name%]&r &cYou must be a player!'
+invalidCmd: '&5[%plugin_name%]&r &cIncorrect command!'
+doesNotHavePerm: '&5[%plugin_name%]&r &cYou do not have permission to use this action!'
+doNotHaveWarp: '&5[%plugin_name%]&r &cUnable to find the warp you need!'
+playerNull: '&5[%plugin_name%]&r &cPlayer is not exist or is offline!'
+
+requireName: '&5[%plugin_name%]&r &cYou must enter the name!'
+worldNull: '&5[%plugin_name%]&r &cCan not find the world of warp you need!'
+warpDidNotCreate: '&5[%plugin_name%]&r &cWarp has not been created!'
+warpCreated: '&5[%plugin_name%]&r &cThis warp was created!'
+tpWarpSuccess: '&5[%plugin_name%]&r &aTeleported @player to @warp warp successfully ! (Service amount: @money)'
+tpWarpSuccessReTpOther: you
+warpCreateSuccess: '&5[%plugin_name%]&r &a@warp warp created successfully!'
+warpDeletedSuccess: '&5[%plugin_name%]&r &a@warp warp deleted successfully!'
+
+warpListMessage: '&5@size warp(s):'
+warpListEach: '&b@num. @name @status'
+requirePass: '&5[%plugin_name%]&r &cYou must enter the password!'
+warpLocked: '&5[%plugin_name%]&r &cThis warp has been locked!'
+passwordUnSafe: '&5[%plugin_name%]&r &cThe password is unsafe!'
+warpLockSuccess: '&5[%plugin_name%]&r &a@warp warp locked successfully!'
+warpStatusLocked: ' &c[LOCKED]'
+warpUnLocked: '&5[%plugin_name%]&r &cThis warp has been unlocked!'
+warpUnLockSuccess: '&5[%plugin_name%]&r &a@warp warp unlocked successfully!'
+tpLockedWarpMessage: '&5[%plugin_name%]&r &b@warp warp has been locked, enter the password to continue:'
+tpLockedWarpWrongPass: '&5[%plugin_name%]&r &cWrong password! Use:&r &6/warp @warp&r&c to retype another password.'
+
+requireWarpLockedAmount: '&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to a locked warp.'
+requireWarpUnLockedAmount: '&5[%plugin_name%]&r &cYou must enter an amount of money paid if the player teleports to an unlocked warp.'
+updateMoneySuccess: '&5[%plugin_name%]&r &aUpdated the amount of money successfully!'
+lackMoney: '&5[%plugin_name%]&r &cSorry, you lack money to do this action!'
+signWarpCreateSuccess: '&5[%plugin_name%]&r &aCreate new warp sign successfully!'
+signWarpRemoveSuccess: '&5[%plugin_name%]&r &aRemove a warp sign successfully!'
+
+reloadSuccess: '&5[%plugin_name%]&r &bReload all files successfully!'
+haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cSorry, you have not enough energy requirements! (@energyRequire/@energy)'
+lostEnergy: '&5[%plugin_name%]&r &bYou lost @lostEnergy energy. Your current energy is @energy/@maxEnergy!'
+
+#
+# <== VARIABLES ==>
+# %plugin_version%
+# %plugin_author%
+# %plugin_name%
+# %contributor%
+#

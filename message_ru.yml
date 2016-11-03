@@ -1,0 +1,54 @@
+
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: ExZotic                 
+#
+# *****************************************
+
+invalidSender: '&5[%plugin_name%]&r &cВы должны быть игроком!'
+invalidCmd: '&5[%plugin_name%]&r &cНеизвестная команда!'
+doesNotHavePerm: '&5[%plugin_name%]&r &cНедостаточно прав, чтобы использовать эту команду!'
+doNotHaveWarp: '&5[%plugin_name%]&r &cДанная Warp-точка не существует!'
+playerNull: '&5[%plugin_name%]&r &cДанный игрок не в сети, либо не существует!'
+
+requireName: '&5[%plugin_name%]&r &cВведите имя!'
+worldNull: '&5[%plugin_name%]&r &cМир с такой Warp-точкой не существует!'
+warpDidNotCreate: '&5[%plugin_name%]&r &cWarp-точка не может быть создана!'
+warpCreated: '&5[%plugin_name%]&r &aWarp-точка успешно создана!'
+tpWarpSuccess: '&5[%plugin_name%]&r &aИгрок @player успешно телепортирован на Warp-точку "@warp"! (Стоимость: @money)'
+tpWarpSuccessReTpOther: вы
+warpCreateSuccess: '&5[%plugin_name%]&r &aWarp-точка "@warp" успешно создана!'
+warpDeletedSuccess: '&5[%plugin_name%]&r &cWarp-точка "@warp" успешно удалена!'
+
+warpListMessage: '&5@size Warp-точек:'
+warpListEach: '&b@num. @name @status'
+requirePass: '&5[%plugin_name%]&r &cНеобходимо ввести пароль!'
+warpLocked: '&5[%plugin_name%]&r &cДанная Warp-точка закрыта!'
+passwordUnSafe: '&5[%plugin_name%]&r &cДанный пароль не безопасен!'
+warpLockSuccess: '&5[%plugin_name%]&r &aWarp-точка "@warp" успешно закрыта!'
+warpStatusLocked: ' &c[ЗАКРЫТО]'
+warpUnLocked: '&5[%plugin_name%]&r &aДанная Warp-точка открыта!'
+warpUnLockSuccess: '&5[%plugin_name%]&r &aWarp-точка "@warp" успешно открыта!'
+tpLockedWarpMessage: '&5[%plugin_name%]&r &bWarp-точка "@warp" закрыта, введите пароль:'
+tpLockedWarpWrongPass: '&5[%plugin_name%]&r &cНеправильный пароль! Введите:&r &6/warp @warp&r&c чтобы ввести пароль снова.'
+
+requireWarpLockedAmount: '&5[%plugin_name%]&r &cВведите стоимость, которую игрок заплатит за перемещение на закрытую Warp-точку.'
+requireWarpUnLockedAmount: '&5[%plugin_name%]&r &cВведите стоимость, которую игрок заплатит за перемещение на открытую Warp-точку.'
+updateMoneySuccess: '&5[%plugin_name%]&r &aСтоимость успешно обновлена!'
+lackMoney: '&5[%plugin_name%]&r &cНедостаточно средств, чтобы совершить это действие!'
+signWarpCreateSuccess: '&5[%plugin_name%]&r &aТабличка для Warp-точки успешно создана!'
+signWarpRemoveSuccess: '&5[%plugin_name%]&r &aТабличка для Warp-точки успешно удалена!'
+
+reloadSuccess: '&5[%plugin_name%]&r &bВсе файлы успешно перезагружены!'
+haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cSorry, you have not enough energy requirements! (@energyRequire/@energy)'
+lostEnergy: '&5[%plugin_name%]&r &bYou lost @lostEnergy energy. Your current energy is @energy/@maxEnergy!'
+
+#
+# <== VARIABLES ==>
+# %plugin_version%
+# %plugin_author%
+# %plugin_name%
+# %contributor%
+#

@@ -1,0 +1,54 @@
+
+# === AQUAWARP ===
+#
+# (c) Đã tạo bởi Anh Craft. Giấy phép Apache.
+# -----------------------------------------
+# Dịch bởi: Anh Craft.
+#
+# *****************************************
+
+invalidSender: '&5[%plugin_name%]&r &cBạn phải là một người chơi!'
+invalidCmd: '&5[%plugin_name%]&r &cLệnh của bạn không đúng!'
+doesNotHavePerm: '&5[%plugin_name%]&r &cBạn không có quyền để dùng hành động này!'
+doNotHaveWarp: '&5[%plugin_name%]&r &cKhông thể tìm thấy warp bạn cần!'
+playerNull: '&5[%plugin_name%]&r &cNgười chơi bạn cần không có hoặc chưa online!'
+
+requireName: '&5[%plugin_name%]&r &cYêu cầu nhập tên warp!'
+worldNull: '&5[%plugin_name%]&r &cKhông thể tìm thấy thế giới của warp mà bạn cần!'
+warpDidNotCreate: '&5[%plugin_name%]&r &cWarp chưa được tạo!'
+warpCreated: '&5[%plugin_name%]&r &cĐã có warp này!'
+tpWarpSuccess: '&5[%plugin_name%]&r &aDịch chuyển @player tới warp @warp thành công! (Chi phí: @money)'
+tpWarpSuccessReTpOther: bạn
+warpCreateSuccess: '&5[%plugin_name%]&r &aWarp @warp được tạo thành công!'
+warpDeletedSuccess: '&5[%plugin_name%]&r &aWarp @warp đã xóa thành công!'
+
+warpListMessage: '&5@size warp:'
+warpListEach: '&b@num. @name'
+requirePass: '&5[%plugin_name%]&r &cBạn phải nhập mật khẩu!'
+warpLocked: '&5[%plugin_name%]&r &cWarp này đã khóa!'
+passwordUnSafe: '&5[%plugin_name%]&r &cMật khẩu này không an toàn!'
+warpLockSuccess: '&5[%plugin_name%]&r &aKhóa warp @warp thành công!'
+warpStatusLocked: ' &c[ĐÃ KHÓA]'
+warpUnLocked: '&5[%plugin_name%]&r &cWarp này đã được mở khóa!'
+warpUnLockSuccess: '&5[%plugin_name%]&r &aMở khóa warp @warp thành công!'
+tpLockedWarpMessage: '&5[%plugin_name%]&r &bWarp @warp đã bị khóa, nhập mật khẩu để tiếp tục:'
+tpLockedWarpWrongPass: '&5[%plugin_name%]&r &cSai mật khẩu! Dùng:&r &6/warp @warp&r&c để thử lại mật khẩu khác!'
+
+requireWarpLockedAmount: '&5[%plugin_name%]&r &cBạn phải nhập số tiền phải trả cho warp đã bị khóa.'
+requireWarpUnLockedAmount: '&5[%plugin_name%]&r &cBạn phải nhập số tiền phải trả cho warp chưa bị khóa.'
+updateMoneySuccess: '&5[%plugin_name%]&r &aCập nhật số tiền phải trả thành công!'
+lackMoney: '&5[%plugin_name%]&r &cXin lỗi, bạn không đủ tiền để thực hiện hành động này!'
+signWarpCreateSuccess: '&5[%plugin_name%]&r &aTạo biển warp thành công!'
+signWarpRemoveSuccess: '&5[%plugin_name%]&r &aXóa biển warp thành công!'
+
+reloadSuccess: "&5[%plugin_name%]&r &bNạp lại toàn bộ tệp tin thành công!"
+haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cXin lỗi, bạn không đủ năng lượng yêu cầu! (@energyRequire/@energy)'
+lostEnergy: '&5[%plugin_name%]&r &bBạn đã mất @lostEnergy năng lượng. Năng lượng hiện tại của bạn là @energy/@maxEnergy!'
+
+#
+# <== CÁC BIẾN ==>
+# %plugin_version%
+# %plugin_author%
+# %plugin_name%
+# %contributor%
+#
