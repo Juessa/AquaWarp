@@ -28,25 +28,31 @@ public class Cmd implements CommandExecutor {
 			if (!(sender instanceof Player)) {
 				if(1 < args.length){
 					TpWarp.run(args[0],args[1],sender,true);
+					return true;
 				}
 				else if(args.length == 1){
 					sender.sendMessage(Functions.Config.gs("invalidSender",
 							Options.plugin.dir + Options.files.messages));
+					return false;
 				}
 				else {
 					sender.sendMessage(Functions.Config.gs("requireName", 
 							Options.plugin.dir + Options.files.messages));
+					return false;
 				}
 			} else {
 				if(1 < args.length){
 					TpWarp.run(args[0],args[1],sender,true);
+					return true;
 				}
 				else if(args.length == 1){
 					TpWarp.run(args[0],sender.getName(),sender,false);
+					return true;
 				}
 				else {
 					sender.sendMessage(Functions.Config.gs("requireName", 
 							Options.plugin.dir + Options.files.messages));
+					return false;
 				}
 			}
 		}
@@ -65,6 +71,7 @@ public class Cmd implements CommandExecutor {
 						sender.sendMessage(Functions.reword(help));
 					}
 				}
+				return true;
 			} else {
 				if(args[0].equals("set")){
 					if(6 < args.length){
@@ -73,12 +80,15 @@ public class Cmd implements CommandExecutor {
 						if(!(sender instanceof Player)){
 							sender.sendMessage(Functions.Config.gs("invalidSender", 
 									Options.plugin.dir + Options.files.messages));
+							return false;
 						} else {
 							if(args.length < 2){
 								sender.sendMessage(Functions.Config.gs("requireName", 
 										Options.plugin.dir + Options.files.messages));
+								return false;
 							} else {
 								SetWarp.run(args[1], sender);
+								return true;
 							}
 						}
 					}
@@ -88,8 +98,10 @@ public class Cmd implements CommandExecutor {
 					if(args.length < 2){
 						sender.sendMessage(Functions.Config.gs("requireName", 
 								Options.plugin.dir + Options.files.messages));
+						return false;
 					} else {
 						DelWarp.run(args[1], sender);
+						return true;
 					}
 				}
 				
@@ -98,12 +110,15 @@ public class Cmd implements CommandExecutor {
 						if(args.length < 2){
 							sender.sendMessage(Functions.Config.gs("requireName", 
 							Options.plugin.dir + Options.files.messages));
+							return false;
 						} else {
 							EditWarp.run(args[1], sender);
+							return true;
 						}
 					} else {
 						sender.sendMessage(Functions.Config.gs("invalidSender", 
 								Options.plugin.dir + Options.files.messages));
+						return false;
 					}
 				}
 				
@@ -116,21 +131,26 @@ public class Cmd implements CommandExecutor {
 					if(1 < args.length){
 						if(2 < args.length){
 							LockWarp.run(sender,args[1],args[2]);
+							return true;
 						} else {
 							sender.sendMessage(Functions.Config.gs("requirePass", 
 									Options.plugin.dir + Options.files.messages));
+							return false;
 						}
 				 	} else {
 				 		sender.sendMessage(Functions.Config.gs("requireName", 
 								Options.plugin.dir + Options.files.messages));
+				 		return false;
 				 	}
 				}
 				else if(args[0].equals("unlock")){
 					if(1 < args.length){
 						UnLockWarp.run(sender,args[1]);
+						return true;
 				 	} else {
 				 		sender.sendMessage(Functions.Config.gs("requireName", 
 								Options.plugin.dir + Options.files.messages));
+				 		return false;
 				 	}
 				}
 				/**********/
@@ -141,17 +161,21 @@ public class Cmd implements CommandExecutor {
 						if(2 < args.length){
 							if(3 < args.length){
 								FeeTp.run(sender,args[1],args[2],args[3]);
+								return true;
 							} else {
 								sender.sendMessage(Functions.Config.gs("requireWarpUnLockedAmount", 
 										Options.plugin.dir + Options.files.messages));
+								return false;
 							}
 						} else {
 							sender.sendMessage(Functions.Config.gs("requireWarpLockedAmount", 
 									Options.plugin.dir + Options.files.messages));
+							return false;
 						}
 				 	} else {
 				 		sender.sendMessage(Functions.Config.gs("requireName", 
 								Options.plugin.dir + Options.files.messages));
+				 		return false;
 				 	}
 				}
 				/**********/
@@ -160,9 +184,11 @@ public class Cmd implements CommandExecutor {
 				else if(args[0].equals("gui")){
 					if(sender instanceof Player){
 						WarpGUI.register(sender);
+						return true;
 					} else {
 						sender.sendMessage(Functions.Config.gs("invalidSender", 
 							Options.plugin.dir + Options.files.messages));
+						return false;
 					}
 				}
 				/**********/
@@ -170,6 +196,7 @@ public class Cmd implements CommandExecutor {
 				else {
 					sender.sendMessage(Functions.Config.gs("invalidCmd",
 							Options.plugin.dir + Options.files.messages));
+					return false;
 				}
 			}
 		}
@@ -190,19 +217,22 @@ public class Cmd implements CommandExecutor {
 						Files.reload(plugin);
 						sender.sendMessage(Functions.Config.gs("reloadSuccess",
 						Options.plugin.dir + Options.files.messages));
-						
+						return true;
 					} else {
 						sender.sendMessage(Functions.Config.gs("senderNotHavePerm",
 								Options.plugin.dir + Options.files.messages));
+						return false;
 					}
 				} else {
 					sender.sendMessage(Functions.Config.gs("invalidCmd",
 							Options.plugin.dir + Options.files.messages));
+					return false;
 				}
 			}
 			
 			else {
-				sender.sendMessage("Use: /warps");
+				sender.sendMessage("Please use: /warps");
+				return false;
 			}
 		}
 		

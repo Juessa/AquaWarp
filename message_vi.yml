@@ -41,8 +41,9 @@ lackMoney: '&5[%plugin_name%]&r &cXin lỗi, bạn không đủ tiền để th�
 signWarpCreateSuccess: '&5[%plugin_name%]&r &aTạo biển warp thành công!'
 signWarpRemoveSuccess: '&5[%plugin_name%]&r &aXóa biển warp thành công!'
 
-requireVault: '&5[%plugin_name%]&r &cTính năng này cần Vault API!'
 reloadSuccess: "&5[%plugin_name%]&r &bNạp lại toàn bộ tệp tin thành công!"
+haveNotEnoughEnergyRequire: '&5[%plugin_name%]&r &cXin lỗi, bạn không đủ năng lượng yêu cầu! (@energyRequire/@energy)'
+lostEnergy: '&5[%plugin_name%]&r &bBạn đã mất @lostEnergy năng lượng. Năng lượng hiện tại của bạn là @energy/@maxEnergy!'
 
 #
 # <== CÁC BIẾN ==>

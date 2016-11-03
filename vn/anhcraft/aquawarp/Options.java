@@ -7,7 +7,7 @@ import vn.anhcraft.aquawarp.API.Functions;
 public class Options {
 	public static class plugin {
 		public static final String name = "AquaWarp";
-		public static final String version = "1.3.3";
+		public static final String version = "1.3.6";
 		public static final String author = "Anh Craft";
 		public static final String contributor = "Banbeucmas"; // ex: a, b, c, d
 		public static final Boolean checkUpdate = Functions.Config.gb("checkUpdate", 
@@ -32,7 +32,6 @@ public class Options {
 			"&5",
 			"&5"
 		};
-		public static final long timeToMessageOnEnable = 20L;
 		public static final String dir = "plugins/AquaWarp/";
 		public static final String[] langs = {
 			"vi",
@@ -69,8 +68,9 @@ public class Options {
 	}
 	
 	public static class message {
-		public static final String enable_bc = Functions.reword("&5%plugin_name%&r &aThe plugin has been enabled!");
-		public static final String disable_bc = Functions.reword("&5%plugin_name%&r &cThe plugin has been disable!");
+		public static final String enable_bc = Functions.reword("&5[%plugin_name%]&r &aThe plugin has been enabled!");
+		public static final String disable_bc = Functions.reword("&5[%plugin_name%]&r &cThe plugin has been disable!");
+		public static final String createPlayerFile = Functions.reword("&5[%plugin_name%]&r &bCreate a new file for a player has UUID is ");
 	}
 	
 	public static class files{

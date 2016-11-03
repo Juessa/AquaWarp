@@ -8,6 +8,15 @@
 # allow this plugin can check update
 checkUpdate: true
 
+# allow this plugin can support PlaceHolderAPI (require PlaceHolderAPI)
+# if changed it, you must be reload this plugin and PlaceholderAPI!
+supportPlaceHolderAPI: false
+
+# allow this plugin can support MVdWPlaceholderAPI (require MVdWPlaceholderAPI)
+# if changed it, you must be reload this plugin and MVdWPlaceholderAPI!
+# you can use placeholders for FeatherBoard :)
+supportMVdWPlaceholderAPI: false
+
 # language file (in messages folder)
 # available: en (English), vi (Vietnamese), de (German), ru (Russian)
 lang: message_en.yml
@@ -15,6 +24,7 @@ lang: message_en.yml
 # hash function using in this plugin
 # available: plain_text (*), sha256, sha512, md5, base64 (*)
 hash: md5
+
 
 # MySQL configuration
 mysql:
@@ -32,6 +42,7 @@ mysql:
   user: root            # (default)
   pass: ''              # (default)
   database: minecraft   # your database name
+  
   
 # HelpWarp configuration
 helpWarp:
@@ -51,6 +62,7 @@ helpWarp:
   - "&6/warpadmin reload&r  &a[+] Reload the config file&r"
   - "&c---------------------------------&r"
 
+
 # LockWarp configuration
 lockWarp:
   # list of unsafe passwords
@@ -66,10 +78,12 @@ lockWarp:
   - abcxyz
   - login
 
+
 # DelWarp configuration
 delWarp:
   # if you delete a locked warp, that warp will be unlocked
   unlockIfDeleteWarp: true
+
 
 # WarpGUI configuration
 warpGUI:
@@ -78,19 +92,53 @@ warpGUI:
   - '&c'
   - '&bMinecraft Server'
 
+
 # TpWarp configuration
 tpWarp:
-  # list of commands will execute before warping
+  # list of commands will execute before or after warping
   exeCmdBeforeWarping:
   - tell {player_name} Teleporting you to {warp_name} warp...
-  
-  # list of commands will execute after warping
   exeCmdAfterWarping:
   - give {player_name} {player_iteminhand_name} 1
   
   # enable service charges
   serviceCharge: false
   
+  # default service costs
+  defaultServiceCost: 0
+  
   # allow play sounds or spawn effects after the player teleport to a warp
   effect: true
   sound: true
+  
+  # energy configuration
+  energy:
+    enable: false
+    
+    # maximum energy the player have
+    maxEnergy: 100
+    
+    # minimum energy needed to teleport to a locked warp
+    energyNeededWarpLocked: 10
+    
+    # minimum energy needed to teleport to an unlocked warp
+    energyNeededWarpUnLocked: 5
+    
+    # energy consumption whenever teleport to a locked warp
+    energyConsumptionWarpLocked: 10
+    
+    # energy consumption whenever teleport to an unlocked warp
+    energyConsumptionWarpUnLocked: 5
+    
+    # reset the energy when the player join
+    reset: true
+    
+    # energy recovery time
+    energyRecoveryTime: 1000 # 1 minute
+    
+    # the maximum amount of energy will recovery (every {energy-recovery-time})
+    # it will recover the amount of energy is equal to the maximum energy
+    energyRecoveryAmount: 10
+    
+    # energy recovery for offline players
+    energyRecoveryForOffline: true
