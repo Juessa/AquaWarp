@@ -1,0 +1,34 @@
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: Bolean XD:)
+# For version 1.4.x or higher
+# *****************************************
+
+sender_must_a_player: "& cIkaw dapat ay isang manlalaro upang maisagawa ang aksyon!"
+cmd_not_found: ". &cItong command ay hindi nahanap &r & 6Please gamitin /warps para sa tulong."
+require_permission: "&cIkaw walang anumang pahintulot upang maisagawa ang aksyon!"
+reloaded_configuration: "&aReloaded lahat configuration file at makipagkonek muli sa database."
+player_require_online: "&cPatawad, ang Manlalaro ay hindi online!"
+do_not_enough_energy: "&cIkaw ay walang sapat na enerhiya"
+do_not_enough_money: "& cIkaw ay walang sapat na pera"
+require_enter_password: '&6 @Warp ay nai-lock, ipasok ang password upang magpatuloy:'
+wrong_password: '& cWrong password! Gamitin: &r &6 /Warp @Warp & r & c i-type muli ng isa pang password '.
+warp_not_found: '&cDi na kita ang warp'
+list_warps: '&5 @Listahan ng warps: @list'
+setwarp_syntax_error: '&cSyntax error! Pakilagay ang syntax: /warps @cmd <name> [<x> <y> <z> <yaw> <pitch> <mundo>] '
+world_not_found: '&cAng mundo hindi natagpuan!'
+warp_available: '&cThat Warp ay magagamit!'
+warp_created: '&a @Warp nilikha!'
+delwarp_syntax_error: '& cSyntax error! Pakilagay ang syntax: /warp @cmd <name> '
+warp_deleted: '& 6 @ Warp tinanggal!'
+warp_locked: '& 6 @ Warp naka-lock!'
+password_unsafe: '& cThe password ay hindi ligtas!'
+lockwarp_syntax_error: '& cSyntax error! Pakilagay ang syntax: /warp @cmd <name> <password> '
+warp_already_locked: '&cAng warp nayan ay naka-lock na!'
+warp_already_unlocked: '&cAng Warp nayan ay tapos nang ma unlock'
+warp_unlocked: '&6 @Warp ay na unlock!'
+unlockwarp_syntax_error: '& cSyntax error! Pakilagay ang syntax: /warp @cmd <name> '
+cost_updated: '&aCost para @warp update na!'
+fee_syntax_error: '&cSyntax error! Pakilagay ang syntax: /warp @cmd <name> <gastos (para sa naka-lock kumiwal)> <gastos (para sa unlock kumiwal)> '

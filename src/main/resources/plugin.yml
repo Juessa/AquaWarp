@@ -1,0 +1,19 @@
+name: AquaWarp
+version: ${project.version}
+main: vn.anhcraft.aquawarp.AquaWarp
+depend:
+  - IceAPI
+  - Vault
+authors: [AnhCraft]
+description: (c) by Anh Craft
+website: http://anhcraft.tk/
+translator: "Anh Craft"
+commands:
+   warp:
+      description: User command
+   warps:
+      description: Admin commands
+   warpadmin:
+      description: Admin commands
+   aquawarp:
+      description: About AquaWarp

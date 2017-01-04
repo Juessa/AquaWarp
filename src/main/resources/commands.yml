@@ -1,0 +1,21 @@
+# =============== AQUAWARP ===============
+#
+# (c) Created by Anh Craft. Apache License.
+#
+# For version 1.4.x or higher
+#
+# *****************************************
+
+fileVersion: 2
+
+warpadmin:
+  reload: 'reload'
+  export: 'export'
+  import: 'import'
+warps:
+  setwarp: 'set'
+  delwarp: 'del'
+  lockwarp: 'lock'
+  unlockwarp: 'unlock'
+  fee: 'fee'
+  gui: 'gui'

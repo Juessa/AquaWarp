@@ -1,0 +1,35 @@
+
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: Anh Craft
+# For version 1.4.x or higher
+# *****************************************
+
+sender_must_a_player: "&cBạn phải là người chơi để thực hiện hành động này!"
+cmd_not_found: "&cLệnh này không có.&r &6Vui lòng dùng /warps để trợ giúp."
+require_permission: "&cBạn không có quyền để thực hiện hành động này!"
+reloaded_configuration: "&aĐã nạp lại toàn bộ tệp tin và kết nối lại cơ sở dữ liệu"
+player_require_online: "&cXIn lỗi, người chơi nay không trực tuyến!"
+do_not_enough_energy: "&cBạn không có đủ năng lượng"
+do_not_enough_money: "&cBạn không có đủ tiền"
+require_enter_password: '&6@warp đã bị khóa, nhập mật khẩu để tiếp tục:'
+wrong_password: '&cMật khẩu không đúng! Dùng:&r &6/warp @warp&r&c để nhập lại mật khẩu khác.'
+warp_not_found: '&cKhông thể tìm thấy warp bạn cần!'
+list_warps: '&5@size warp: @list'
+setwarp_syntax_error: '&cSai cú pháp! Vui lòng dùng cú pháp này: /warps @cmd <name> [<x> <y> <z> <yaw> <pitch> <world>]'
+world_not_found: '&cKhông tìm thấy thế giới!'
+warp_available: '&cWarp đó đã có sẵn!'
+warp_created: '&aĐã tạo @warp!'
+delwarp_syntax_error: '&cSai cú pháp! Vui lòng dùng cú pháp này: /warps @cmd <name>'
+warp_deleted: '&6Đã xóa @warp!'
+warp_locked: '&6Đã khóa @warp!'
+password_unsafe: '&cMật khẩu không an toàn!'
+lockwarp_syntax_error: '&cSai cú pháp! Vui lòng dùng cú pháp này: /warps @cmd <name> <password>'
+warp_already_locked: '&cWarp đó đã được khóa!'
+warp_already_unlocked: '&cWarp đó đã được mở khóa!'
+warp_unlocked: '&6Đã mở khóa @warp!'
+unlockwarp_syntax_error: '&cSai cú pháp! Vui lòng dùng cú pháp này: /warps @cmd <name> '
+cost_updated: '&aChi phí cho @warp đã được cập nhật!'
+fee_syntax_error: '&cSai cú pháp! Vui lòng dùng cú pháp này: /warps @cmd <name> <cost (for locked warp)> <cost (for unlocked warp)>'

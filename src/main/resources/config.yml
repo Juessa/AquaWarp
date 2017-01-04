@@ -1,0 +1,171 @@
+
+# =============== AQUAWARP ===============
+#
+# (c) Created by Anh Craft. Apache License.
+#
+# For version 1.4.x or higher
+#
+# *****************************************
+
+fileVersion: 1
+
+# allow this plugin can check update
+checkUpdate: true
+
+prefix: '&b&l[{plugin_name}]&r '
+
+# hook with another plugin
+hook:
+  # placeholders
+  PlaceHolderAPI: false
+  MVdWPlaceholderAPI: false
+
+# language file (in messages folder)
+# available: en-uk (English UK), vi (Vietnamese), fil (Filipino)
+lang: en-uk
+
+# hash function using in this plugin
+# available: plains (*), sha256, sha512, md5, base64 (*)
+hash: md5
+
+# save data type: file, mysql
+saveDataType: file
+
+# MySQL configuration (if you enable mysql)
+mysql:
+  table:
+    collate: utf8_unicode_ci
+    charset: utf8
+    # MariaDB or InnoDB
+    engine: InnoDB
+    
+  host: localHost       # (default)
+  port: 3306            # (default) [integer]
+  user: root            # (default)
+  pass: ''              # (default)
+  database: minecraft   # your database name
+  
+  
+# HelpWarp configuration
+helpWarp:
+- "&c---------------------------------&r"
+- "&a-=[ &r&5{plugin_name}&r&a &bv{plugin_version}&r&a ]=-&r"
+- "&5"
+- "&6/warp&r  &a[+] List all warps&r"
+- "&6/warp <name> [<player>]&r  &a[+] Teleport you or other player to a warp&r"
+- "&6/warps&r  &a[+] All commands of this plugin (Help)&r"
+- "&6/warps set <name> [<x> <y> <z> <yaw> <pitch> <world>]&r  &a[+] Create new warp&r"
+- "&6/warps del <name>&r  &a[+] Delete a warp&r"
+- "&6/warps lock <name> <pass>&r  &a[+] Lock a warp&r"
+- "&6/warps unlock <name>&r  &a[+] Unlock a warp&r"
+- "&6/warps fee <name> <cost (for locked warp)> <cost (for unlocked warp)>&r  &a[+] Set the cost when player teleport to warp&r"
+- "&6/warps gui&r  &a[+] Open the GUI&r"
+- "&6/warpadmin reload&r  &a[+] Reload the config file&r"
+- "&c---------------------------------&r"
+
+
+# LockWarp configuration
+lockWarp:
+  # list of unsafe passwords
+  unsafePasswords:
+  - '123456'
+  - '123456789'
+  - '123123'
+  - '1234'
+  - '123'
+  - admin
+  - password
+  - abc123
+  - abcxyz
+  - login
+
+# TpWarp configuration
+tpWarp:
+  # list of commands will execute before warping
+  commandBeforeWarping:
+  - tell <player> Teleporting you to <warp> warp...
+
+  # list of commands will execute before warping successfully
+  commandAfterWarping:
+  - give <player> diamond 1
+  
+  # enable service charges
+  serviceCharge: false
+  
+  # allow play sounds or spawn effects after the player teleport to a warp
+  effect:
+    enable: true
+    # list: HEART_FOUR_DIRECTIONS
+    type: HEART_FOUR_DIRECTIONS
+    time: 10 # [integer] it means 10 blocks or sometimes it means 10 ticks
+    repeat: 0 # loop = repeat + 1
+  sound: true
+  
+  # energy configuration
+  energy:
+    # energy consumption for each warp
+    energyConsumption:
+      default:
+        unlocked: 5 # [integer]
+        locked: 10 # [integer]
+      warps:
+      # groupname . value (for unlocked warp) . value (for locked warp)
+      - trade:5:10
+      - shop:12:18
+
+    # maximum energy the player have
+    maxEnergy:
+      default: 100 # [integer]
+      op: 10 # [integer] for operator
+      # [integer] list of groups: aquawarp.energy.max.<group> (you can edit in permissions.yml)
+      # WARNING: The first group has the highest priority
+      groups:
+      # groupname . value
+      - member:80
+      - staff:50
+      - other:30
+    
+    # reset the energy when the player join
+    reset: true
+    
+    # energy recovery time
+    energyRecoveryTime: 20 # [integer] 1s
+    
+    # the maximum amount of energy will recovery (every {energy-recovery-time})
+    # it will recover the amount of energy is equal to the maximum energy
+    energyRecoveryAmount:
+      default: 10 # [integer]
+      op: 10 # [integer] for operator
+      # [integer] list of groups: aquawarp.energy.reset.<group> (you can edit in permissions.yml)
+      # WARNING: The first group has the highest priority
+      groups:
+      # groupname . value
+      - member:5
+      - staff:3
+      - other:2
+    
+    # energy recovery for offline players
+    energyRecoveryForOffline: true
+
+# Warp sign Configuration
+warpsign:
+  code: '[aquawarp]'
+  title: '&6&lWarp'
+
+# Warp GUI Configuration
+warpgui:
+  # Warning: it does not include menu
+  row: 3
+  title: '&4&lWarp GUI >> @page'
+  items_warp_unlock:
+    lores:
+    - '&b >> Click here to go to @warp <<'
+  items_warp_lock:
+    lores:
+    - '&b >> Click here to go to @warp <<'
+  item_next_page:
+    name: '&bNext page'
+    lores: {}
+  item_prev_page:
+    name: '&bPrev page'
+    lores: {}

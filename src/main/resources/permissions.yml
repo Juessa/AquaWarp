@@ -1,0 +1,113 @@
+# =============== AQUAWARP ===============
+#
+# (c) Created by Anh Craft. Apache License.
+#
+# For version 1.4.x or higher
+#
+# *****************************************
+
+fileVersion: 2
+
+#---------------------------------------------------------------------------------------
+#  Please don't set new permission. But you can edit any of the following permissions  #
+#  Don't edit variables                                                                #
+#---------------------------------------------------------------------------------------
+
+all_permission:
+- aquawarp
+- aquawarp.*
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ #
+
+# reload all config files and reconnect to database
+warpadmin:
+  reload:
+  - aquawarp.warpadmin
+  - aquawarp.warpadmin.*
+  - aquawarp.warpadmin.reload
+
+  export:
+  - aquawarp.warpadmin.export
+
+  import:
+  - aquawarp.warpadmin.import
+
+warps:
+  # teleport self to a warp
+  tpwarp:
+  - aquawarp.tpwarp.*
+  - aquawarp.tpwarp.<name>
+  - aquawarp.tpwarp
+
+  tpwarp_maxEnergy:
+  - aquawarp.energy.max.<group>
+
+  tpwarp_energyRecovery:
+  - aquawarp.energy.reset.<group>
+
+  # teleport a player to a warp
+  tpwarp_player:
+  - aquawarp.tpwarp_player.*
+  - aquawarp.tpwarp_player.<name>
+  - aquawarp.tpwarp_player
+
+  # list of warps
+  listwarp:
+  - aquawarp.listwarp
+
+  # set (create) a new warp
+  setwarp:
+  - aquawarp.setwarp.*
+  - aquawarp.setwarp.<name>
+  - aquawarp.setwarp
+
+  # delete (del) a warp
+  delwarp:
+  - aquawarp.delwarp.*
+  - aquawarp.delwarp.<name>
+  - aquawarp.delwarp
+
+  # lock warp
+  lockwarp:
+  - aquawarp.lockwarp.*
+  - aquawarp.lockwarp.<name>
+  - aquawarp.lockwarp
+
+  # unlockwarp warp
+  unlockwarp:
+  - aquawarp.unlockwarp.*
+  - aquawarp.unlockwarp.<name>
+  - aquawarp.unlockwarp
+
+  # fee (cost)
+  fee:
+  - aquawarp.fee.*
+  - aquawarp.fee.<name>
+  - aquawarp.fee
+
+  # create warp sign
+  warpsign_create:
+  - aquawarp.warpsign.create.*
+  - aquawarp.warpsign.create
+
+  # use warp sign
+  warpsign_use:
+  - aquawarp.warpsign.use.*
+  - aquawarp.warpsign.use.<name>
+  - aquawarp.warpsign.use
+
+  # remove warp sign
+  warpsign_remove:
+  - aquawarp.warpsign.remove.*
+  - aquawarp.warpsign.remove.<name>
+  - aquawarp.warpsign.remove
+
+  # warp gui - open
+  warpgui_open:
+  - aquawarp.warpgui.open
+
+  # warpgui - teleport
+  warpgui_tp:
+  - aquawarp.warpgui.tp.*
+  - aquawarp.warpgui.tp.<name>
+  - aquawarp.warpgui.tp

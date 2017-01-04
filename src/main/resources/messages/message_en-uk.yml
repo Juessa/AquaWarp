@@ -1,0 +1,35 @@
+
+# === AQUAWARP ===
+#
+# (c) Created by Anh Craft. Apache License.
+# -----------------------------------------
+# Translated by: Anh Craft
+# For version 1.4.x or higher
+# *****************************************
+
+sender_must_a_player: "&cYou must a player to perform this action!"
+cmd_not_found: "&cThis command not found.&r &6Please use /warps for help."
+require_permission: "&cYou don't have any permission to perform this action!"
+reloaded_configuration: "&aReloaded all configuration files and reconnect to database."
+player_require_online: "&cSorry, the player isn't online!"
+do_not_enough_energy: "&cYou don't have enough energy"
+do_not_enough_money: "&cYou don't have enough money"
+require_enter_password: '&6@warp has been locked, enter the password to continue:'
+wrong_password: '&cWrong password! Use:&r &6/warp @warp&r&c to retype another password.'
+warp_not_found: '&cUnable to find the warp you need!'
+list_warps: '&5@size warps: @list'
+setwarp_syntax_error: '&cSyntax error! Please enter this syntax: /warps @cmd <name> [<x> <y> <z> <yaw> <pitch> <world>]'
+world_not_found: '&cWorld not found!'
+warp_available: '&cThat warp is available!'
+warp_created: '&a@warp created!'
+delwarp_syntax_error: '&cSyntax error! Please enter this syntax: /warps @cmd <name>'
+warp_deleted: '&6@warp deleted!'
+warp_locked: '&6@warp locked!'
+password_unsafe: '&cThe password is unsafe!'
+lockwarp_syntax_error: '&cSyntax error! Please enter this syntax: /warps @cmd <name> <password>'
+warp_already_locked: '&cThat warp already locked!'
+warp_already_unlocked: '&cThat warp already unlocked!'
+warp_unlocked: '&6@warp unlocked!'
+unlockwarp_syntax_error: '&cSyntax error! Please enter this syntax: /warps @cmd <name> '
+cost_updated: '&aCost for @warp updated!'
+fee_syntax_error: '&cSyntax error! Please enter this syntax: /warps @cmd <name> <cost (for locked warp)> <cost (for unlocked warp)>'

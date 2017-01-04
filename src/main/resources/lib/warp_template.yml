@@ -1,0 +1,14 @@
+name: ''
+location:
+  x: 0.0
+  y: 0.0
+  z: 0.0
+  world: 'world'
+  yaw: 0.0
+  pitch: 0.0
+protection:
+  enable: false
+  value: ''
+service_charges:
+  lock: 0.0
+  unlock: 0.0
