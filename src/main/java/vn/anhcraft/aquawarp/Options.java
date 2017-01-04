@@ -6,7 +6,7 @@ package vn.anhcraft.aquawarp;
  */
 public class Options {
     public static String pluginName = "AquaWarp";
-    public static String pluginVersion = "1.4.1";
+    public static String pluginVersion = "1.4.2";
     public static String author = "Anh Craft";
     public static String contributor = "";
     public static String pluginDir = "plugins/AquaWarp/";

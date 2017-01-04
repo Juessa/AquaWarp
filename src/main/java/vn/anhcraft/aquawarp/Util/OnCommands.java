@@ -30,8 +30,14 @@ public class OnCommands implements CommandExecutor {
                 TpWarp.main(args[0], sender.getName(), sender, false);
                 return true;
             } else {
-                new ListWarps().run(sender);
-                return true;
+                if(!(sender instanceof Player) || !Configuration.config.getBoolean("tpWarp.useGUI")) {
+                    new ListWarps().run(sender);
+                    return true;
+                } else {
+                    WarpGUI.page = 1;
+                    WarpGUI.show((Player) sender, 0);
+                    return true;
+                }
             }
         }
 

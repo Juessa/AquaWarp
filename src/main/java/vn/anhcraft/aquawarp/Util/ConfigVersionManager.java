@@ -47,16 +47,20 @@ public class ConfigVersionManager {
         }, 25);
     }
 
-    public static void checkConfig(){
+    public static void checkConfig() throws IOException {
         File f = new File(Options.configFileDir);
         FileConfiguration c = YamlConfiguration.loadConfiguration(f);
         int v = c.getInt("fileVersion");
         // old version
         // 1 is current version
-        if(v < 1){
+        if(v < 2){
             copy(Options.configFileDir, Options.configFileOldDir);
             send("System.UpdateFile.Config");
-            // start convert (v < 2, v < 3, v < 4,.......)
+            if(v < 2){
+                c.set("tpWarp.useGUI",false);
+                c.set("fileVersion",2);
+                c.save(f);
+            }
         }
     }
 

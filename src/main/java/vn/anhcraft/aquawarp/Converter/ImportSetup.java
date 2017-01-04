@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerChatEvent;
 import vn.anhcraft.aquawarp.AquaWarpsMessages;
 import vn.anhcraft.aquawarp.Util.Strings;
 
@@ -32,7 +32,7 @@ public class ImportSetup implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void chayConverterSetup(AsyncPlayerChatEvent ev){
+    public void chayConverterSetup(PlayerChatEvent ev){
         Player p = ev.getPlayer();
         UUID u = p.getUniqueId();
         if(isPlayerHasCache(p)) {
