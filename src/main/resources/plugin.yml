@@ -1,12 +1,15 @@
 name: AquaWarp
-version: ${project.version}
-main: vn.anhcraft.aquawarp.AquaWarp
-depend:
-  - IceAPI
-  - Vault
+version: 1.4.4
+main: org.anhcraft.aquawarp.AquaWarp
+depends:
+- SpaciousLib
+- Vault
+loadbefore:
+- SpaciousLib
+- Vault
 authors: [AnhCraft]
 description: (c) by Anh Craft
-website: http://anhcraft.tk/
+website: https://anhcraft.org/
 translator: "Anh Craft"
 commands:
    warp:

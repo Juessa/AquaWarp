@@ -7,7 +7,7 @@
 #
 # *****************************************
 
-fileVersion: 1
+fileVersion: 2
 
 # allow this plugin can check update
 checkUpdate: true
@@ -81,6 +81,9 @@ lockWarp:
 
 # TpWarp configuration
 tpWarp:
+  # use GUI as default
+  useGUI: false
+
   # list of commands will execute before warping
   commandBeforeWarping:
   - tell <player> Teleporting you to <warp> warp...
