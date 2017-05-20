@@ -1,0 +1,35 @@
+
+# === AQUAWARP ===
+#
+# (c) Creado por Anh Craft. Licencia Apache.
+# -----------------------------------------
+# Traducido por: Juessa
+# Para la versión 1.4.x o superior.
+# *****************************************
+
+sender_must_a_player: "&c¡Debes ser un jugador para realizar esta acción!"
+cmd_not_found: "&cComando no encontrado.&r &6Por favor usa /warps por ayuda."
+require_permission: "&c¡No tienes permiso para realizar esta acción!"
+reloaded_configuration: "&aTodas las configuraciones recargadas y reconectado a la base de datos."
+player_require_online: "&c¡Lo siento, el jugador no esta en linea!"
+do_not_enough_energy: "&cNo tienes suficiente energía"
+do_not_enough_money: "&cNo tienes suficiente dinero"
+require_enter_password: '&6@warp ha sido bloqueado, introduce la contraseña para continuar:'
+wrong_password: '&c¡Contraseña incorrecta! Usa:&r &6/warp @warp&r&c para escribir otra contraseña.'
+warp_not_found: '&c¡No se puede encontrar el warp que necesita!'
+list_warps: '&5@size warps: @list'
+setwarp_syntax_error: '&c¡Error de sintaxis! Por favor introduce esta sintaxis: /warps @cmd <nombre> [<x> <y> <z> <yaw> <pitch> <mundo>]'
+world_not_found: '&c¡Mundo no encontrado!'
+warp_available: '&c¡Ese warp esta disponible!'
+warp_created: '&a¡@warp creado!'
+delwarp_syntax_error: '&c¡Error de sintaxis! Por favor introduce esta sintaxis: /warps @cmd <nombre>'
+warp_deleted: '&6¡@warp eliminado!'
+warp_locked: '&6¡@warp bloqueado!'
+password_unsafe: '&c¡La contraseña es insegura!'
+lockwarp_syntax_error: '&c¡Error de sintaxis! Por favor introduce esta sintaxis: /warps @cmd <nombre> <contraseña>'
+warp_already_locked: '&c¡Ese warp ya se encuentra bloqueado!'
+warp_already_unlocked: '&c¡Ese warp ya se encuentra desbloqueado!'
+warp_unlocked: '&6¡@warp desbloqueado!'
+unlockwarp_syntax_error: '&c¡Error de sintaxis! Por favor introduce esta sintaxis: /warps @cmd <nombre> '
+cost_updated: '&a¡Costo por @warp actualizado!'
+fee_syntax_error: '&c¡Error de sintaxis! Por favor introduce esta sintaxis: /warps @cmd <nombre> <costo (para el warp bloqueado)> <costo (para el warp desbloqueado)>'
